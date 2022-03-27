@@ -31,7 +31,7 @@ public class Cart
 //		inverseJoinColumns = { @JoinColumn(name = "garden_decor_id") }
 //	)
 //	private List<GardenDecor> gardenDecor;
-//	
+	
 	/*@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable
     (
