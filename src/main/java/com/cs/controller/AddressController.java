@@ -29,9 +29,9 @@ public class AddressController {
 	}
 	
 	@DeleteMapping("/deleteAddress/{id}")
-	ResponseEntity<String> deleteAddressById(@PathVariable("id") int id)
+	ResponseEntity<Address> deleteAddressById(@PathVariable("id") int id)
 	{
-		return new ResponseEntity<String>(addressService.deleteAddressById(id),HttpStatus.OK);
+		return new ResponseEntity<Address>(addressService.deleteAddressById(id),HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateAddress/{id}")

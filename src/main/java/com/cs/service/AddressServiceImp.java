@@ -11,27 +11,33 @@ import com.cs.repository.IAddressRepository;
 
 @Service
 public class AddressServiceImp implements IAddressService {
-	
+
 	@Autowired
 	IAddressRepository addressRepo;
 
-	//adds new address to database.
+	// adds new address to database.
 	@Override
 	public Address addAddress(Address address) {
 		return addressRepo.save(address);
 	}
 
-	//deletes address of given id from database.
+	// retrieves the address of given id from database
 	@Override
-	public String deleteAddressById(int id) {
-		addressRepo.deleteById(id);
-		return "Address with the given id: "+id+" is successfully removed";
+	public Address getAddresById(int id) {
+
+		return addressRepo.findById(id).get();
 	}
 
-	//updates the existing address of given id in database. 
+	// retrieves the list of all available addresses in database
+	@Override
+	public List<Address> getAllAddresses() {
+		return addressRepo.findAll();
+	}
+
+	// updates the existing address of given id in database.
 	@Override
 	public Address updateAddressById(int id, Address address) {
-		
+
 		Optional<Address> opt = addressRepo.findById(id);
 		opt.get().setBuildingName(address.getBuildingName());
 		opt.get().setCity(address.getCity());
@@ -42,21 +48,11 @@ public class AddressServiceImp implements IAddressService {
 		return addressRepo.save(opt.get());
 	}
 
-	
-	//retrieves the address of given id from database
+	// deletes address of given id from database.
 	@Override
-	public Address getAddresById(int id) {
-		
-		return addressRepo.findById(id).get();
+	public Address deleteAddressById(int id) {
+		Optional<Address> address = addressRepo.findById(id);
+		addressRepo.deleteById(id);
+		return address.get();
 	}
-
-	
-	//retrieves the list of all available addresses in database
-	@Override
-	public List<Address> getAllAddresses() {
-		return addressRepo.findAll();
-	}
-	
-	
-
 }

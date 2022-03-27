@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Address {
-	
+
 	@Id
 	@GeneratedValue
 	int addressId;
@@ -24,5 +24,17 @@ public class Address {
 	String state;
 	int pincode;
 	String country;
-	
+
+	public Address(int flatNum, String buildingName, String colony, String city, String state, int pincode,
+			String country) {
+		super();
+		this.flatNum = flatNum;
+		this.buildingName = buildingName;
+		this.colony = colony;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.country = country;
+	}
+
 }
