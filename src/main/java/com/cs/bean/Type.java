@@ -1,0 +1,5 @@
+package com.cs.bean;
+
+public enum Type {
+	PLASTIC_POT,CERMAIC_POT,DESIGNER_POT,HANGING_BUCKET,TOWER_PLANTER;
+}

@@ -23,14 +23,14 @@ public class Cart
 	private int cartId;
 	private double cartCost;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable
-    (
-		name = "cart_garden_decor", 
-		joinColumns = { @JoinColumn(name = "cart_id") }, 
-		inverseJoinColumns = { @JoinColumn(name = "garden_decor_id") }
-	)
-	private List<GardenDecor> gardenDecor;
+//	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+//    @JoinTable
+//    (
+//		name = "cart_garden_decor", 
+//		joinColumns = { @JoinColumn(name = "cart_id") }, 
+//		inverseJoinColumns = { @JoinColumn(name = "garden_decor_id") }
+//	)
+//	private List<GardenDecor> gardenDecor;
 	
 	/*@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable
