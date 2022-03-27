@@ -23,18 +23,18 @@ public class Cart
 	private int cartId;
 	private double cartCost;
 	
-//	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-//    @JoinTable
-//    (
-//		name = "cart_garden_decor", 
-//		joinColumns = { @JoinColumn(name = "cart_id") }, 
-//		inverseJoinColumns = { @JoinColumn(name = "garden_decor_id") }
-//	)
-//	private List<GardenDecor> gardenDecor;
+	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    	@JoinTable
+  	(
+		name = "cart_garden_decor", 
+		joinColumns = { @JoinColumn(name = "cart_id") }, 
+		inverseJoinColumns = { @JoinColumn(name = "garden_decor_id") }
+	)
+	private List<GardenDecor> gardenDecor;
 	
 	/*@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable
-    (
+    	@JoinTable
+   	(
 		name = "cart_seed", 
 		joinColumns = { @JoinColumn(name = "cart_id") }, 
 		inverseJoinColumns = { @JoinColumn(name = "seed_id") }
@@ -42,8 +42,8 @@ public class Cart
 	private List<Seed> seed;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable
-    (
+    	@JoinTable
+    	(
 		name = "cart_plant", 
 		joinColumns = { @JoinColumn(name = "cart_id") }, 
 		inverseJoinColumns = { @JoinColumn(name = "plant_id") }
@@ -51,8 +51,8 @@ public class Cart
 	private List<Plant> plant;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable
-    (
+    	@JoinTable
+    	(
 		name = "cart_planter", 
 		joinColumns = { @JoinColumn(name = "cart_id") }, 
 		inverseJoinColumns = { @JoinColumn(name = "planter_id") }
@@ -60,8 +60,8 @@ public class Cart
 	private List<Planter> planter;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable
-    (
+   	@JoinTable
+    	(
 		name = "cart_fertilizer", 
 		joinColumns = { @JoinColumn(name = "cart_id") }, 
 		inverseJoinColumns = { @JoinColumn(name = "fertilizer_id") }
