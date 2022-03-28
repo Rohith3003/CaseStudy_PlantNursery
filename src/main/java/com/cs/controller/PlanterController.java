@@ -48,10 +48,16 @@ public class PlanterController {
 		return new ResponseEntity<Planter>(planterservice.getPlanterByName(name),HttpStatus.OK);
 	}
 	
-	@PatchMapping("/updatePlanterPrice/{id}")
+	@PatchMapping("/updatePlanterPriceById/{id}")
 	public ResponseEntity<Planter> updatePrice(@RequestBody float price, @PathVariable("id") int id)
 	{
 		return new ResponseEntity<Planter>(planterservice.updatePlanterPrice(id, price),HttpStatus.OK);
+	}
+	
+	@PatchMapping("/updatePlanterPriceByName/{name}")
+	public ResponseEntity<Planter> updatePrice(@RequestBody float price,@PathVariable("name")String name)
+	{
+		return new ResponseEntity<Planter>(planterservice.updatePlanterPrice(name, price),HttpStatus.OK);
 	}
 	
 	@PatchMapping("/updatePlanterPhoto/{id}")
@@ -59,9 +65,15 @@ public class PlanterController {
 	{
 		return new ResponseEntity<Planter>(planterservice.updatePlanterPhoto(id, photoLoc),HttpStatus.OK);
 	}
-	@DeleteMapping("deletePlanter/{id}")
+	@DeleteMapping("deletePlanterById/{id}")
 	public ResponseEntity<Planter> deleteById(@PathVariable("id") int id)
 	{
 		return new ResponseEntity<Planter>(planterservice.deletePlanterById(id),HttpStatus.OK);
+	}
+	
+	@DeleteMapping("deletePlanterByName/{name}")
+	public ResponseEntity<Planter> deleteByName(@PathVariable("name") String name)
+	{
+		return new ResponseEntity<>(planterservice.deletePlanterByName(name),HttpStatus.OK);
 	}
 }

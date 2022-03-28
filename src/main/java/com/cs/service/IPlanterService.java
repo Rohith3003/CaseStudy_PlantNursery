@@ -12,8 +12,11 @@ public interface IPlanterService {
 	//Add new Planter
 	public Planter addPlanter(Planter planter);
 	
-	//Update planter price
+	//Update planter price  by id
 	public Planter updatePlanterPrice(int id,float price);
+	
+	//Update planter price by name
+	public Planter updatePlanterPrice(String name,float price);
 	
 	//Update planter location
 	public Planter updatePlanterPhoto(int id,String photoLoc);
@@ -29,4 +32,7 @@ public interface IPlanterService {
 	
 	//delete planter by Id
 	public Planter deletePlanterById(int id);
+	
+	//delete planter by name
+	public Planter deletePlanterByName(String name);
 }

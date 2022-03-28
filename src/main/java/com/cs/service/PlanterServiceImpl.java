@@ -67,7 +67,10 @@ public class PlanterServiceImpl implements IPlanterService {
 //		}
 //		else
 //		{
-		return planterRepo.getByName(name);
+		Planter returned_planter=planterRepo.getByName(name);
+		if(returned_planter==null)
+			throw new PlanterNotFoundException("Planter with name: "+name+" not found");
+		return returned_planter;
 //		}
 	}
 
@@ -154,6 +157,40 @@ public class PlanterServiceImpl implements IPlanterService {
 			updatedPlanter.setPhotoLoc(photoLoc);
 			return planterRepo.save(updatedPlanter);
 //		}
+	}
+
+	@Override
+	public Planter deletePlanterByName(String name) {
+		//Delete record by matching name
+//		Optional<EndUser> endUser = endUserRepo.findById(id);
+//		if(!endUser.isPresent())
+//		{
+//			throw new PlanterNotFoundException("admin not found with the given id:" + id);
+//		}
+//		else if(!endUser.get().getRole().equals("admin"))
+//		{
+//			throw new PlanterNotFoundException("only admin can add planter to the database");
+//		}
+//		else if(!endUser.get().getLogin().isLogin())
+//		{
+//			throw new PlanterNotFoundException("first login to add planter to the database");
+//		}
+//		else
+//		{
+		Planter returned_planter=planterRepo.getByName(name);
+		if(returned_planter==null)
+			throw new PlanterNotFoundException("Planter with name: "+name+" not found");
+		return planterRepo.deleteByName(name);
+//		}
+	}
+
+	@Override
+	public Planter updatePlanterPrice(String name,float price) {
+		Planter returned_planter=planterRepo.getByName(name);
+		if(returned_planter==null)
+			throw new PlanterNotFoundException("Planter with name: "+name+" not found");
+		returned_planter.setPrice(price);
+		return planterRepo.save(returned_planter);
 	}
 	
 	
