@@ -18,11 +18,9 @@ import com.cs.service.IAddressService;
 
 /**
  * This class is used as controller to add, delete, update and retrieve
- * fertilizer to and from database
+ * Address to and from database
  * 
  * @author Rohith(Employee id: 46191986)
- * @version 1.0.0
- * @since 28-03-2022
  *
  */
 

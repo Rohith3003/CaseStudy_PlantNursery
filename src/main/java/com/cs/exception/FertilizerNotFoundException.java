@@ -5,8 +5,6 @@ package com.cs.exception;
  * FertilizerNotFound Exceptions
  * 
  * @author Rohith(Employee id: 46191986)
- * @version 1.0.0
- * @since 28-08-2022
  *
  */
 @SuppressWarnings("serial")

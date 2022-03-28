@@ -5,9 +5,6 @@ package com.cs.exception;
  * AddressNotFound Exceptions
  * 
  * @author Rohith(Employee id: 46191986)
- * @version 1.0.0
- * @since 28-08-2022
- *
  */
 @SuppressWarnings("serial")
 public class AddressNotFoundException extends RuntimeException {

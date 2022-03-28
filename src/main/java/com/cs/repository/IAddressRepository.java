@@ -9,8 +9,6 @@ import com.cs.bean.Address;
  * executes all the queries coming from AddressService to database
  * 
  * @author Rohith(Employee id: 46191986)
- * @version 1.0.0
- * @since 28-03-2022
  *
  */
 public interface IAddressRepository extends JpaRepository<Address, Integer> {

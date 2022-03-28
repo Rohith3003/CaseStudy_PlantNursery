@@ -1,6 +1,13 @@
 package com.cs.exception;
 
-public class UserNotFoundException extends RuntimeException{
+/**
+ * This is a user defined exception class used to generate customized
+ * UserNotFound Exceptions
+ * 
+ * @author Rohith(Employee id: 46191986)
+ */
+@SuppressWarnings("serial")
+public class UserNotFoundException extends RuntimeException {
 
 	public UserNotFoundException() {
 		super();

@@ -15,8 +15,6 @@ import com.cs.repository.IAddressRepository;
  * add, delete, update and retrieve the address into or from database
  * 
  * @author Rohith(Employee id: 46191986)
- * @version 1.0.0
- * @since 28-03-2022
  *
  */
 @Service
