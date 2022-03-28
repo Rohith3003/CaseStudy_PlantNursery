@@ -21,6 +21,9 @@ import com.cs.dto.RegisterOutputDto;
 import com.cs.repository.ICustomerRepository;
 
 
+
+
+
 @ExtendWith(SpringExtension.class)
 public class CustomerServiceMockitoTest {
 	
@@ -235,11 +238,7 @@ public class CustomerServiceMockitoTest {
 		customer.setId(22);
 		Mockito.when(customerRepository.findById(22)).thenReturn(Optional.of(customer));
 		Mockito.when(customerRepository.getById(22)).thenReturn(customer);
-		RegisterOutputDto registerDto = new RegisterOutputDto();
-		registerDto.setEmailId("ardoing@gmail.com");
-		registerDto.setName("Arun");
-		Mockito.when(customerRepository.findById(22)).thenReturn(Optional.of(customer));
-		Mockito.when(customerRepository.getById(22)).thenReturn(customer);
+		Mockito.doNothing().when(customerRepository).deleteById(22);
 		RegisterOutputDto registerDto1 = customerService.deleteCustomerById(22);
 		assertEquals("Arun",registerDto1.getName());
 		assertEquals("ardoing@gmail.com",registerDto1.getEmailId());
@@ -256,6 +255,7 @@ public class CustomerServiceMockitoTest {
 		customer.setAdmin(false);
 		customer.setId(22);
 		Mockito.when(customerRepository.findByEmailId("ardoing@gmail.com")).thenReturn(customer);
+		Mockito.doNothing().when(customerRepository).delete(customer);
 		RegisterOutputDto registerDto1 = customerService.deleteCustomerByEmailId("ardoing@gmail.com");
 		assertEquals("Arun",registerDto1.getName());
 		assertEquals("ardoing@gmail.com",registerDto1.getEmailId());
