@@ -54,12 +54,12 @@ public class EndUser{
     
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "login_Id")
+    @JoinColumn(name = "address_Id")
 	private Address address;
     
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "login_Id")
+    @JoinColumn(name = "cart_Id")
 	private Cart cart;
     
 }
