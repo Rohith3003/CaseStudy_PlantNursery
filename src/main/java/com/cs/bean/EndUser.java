@@ -58,6 +58,7 @@ public class EndUser {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_Id")
-	private Cart cart;
+  private Cart cart;
+
 
 }
