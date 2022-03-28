@@ -1,7 +1,9 @@
 package com.cs.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.Optional;
 
@@ -41,13 +43,13 @@ public class MockitoSeedServiceTest {
 		seed=new Seed();
 		seed.setDescription("This is Tomato Seed");
 		seed.setName("Tomato Seed");
-		//seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
+		seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
 		seed.setPrice(500);
 		Mockito.when(seedRepo.save(seed)).thenReturn(seed);
 		returned_seed=seedService.addSeed(seed);
 		assertEquals("This is Tomato Seed", returned_seed.getDescription());
 		assertEquals("Tomato Seed", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
+		assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
 		assertEquals(500, returned_seed.getPrice());
 	}
 	
@@ -57,13 +59,13 @@ public class MockitoSeedServiceTest {
 		seed=new Seed();
 		seed.setDescription("Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.");
 		seed.setName("Cauliflower seeds");
-		//seed.setPhotoLoc("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg");
+		seed.setPhotoLoc("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg");
 		seed.setPrice(500);
 		Mockito.when(seedRepo.findById(66)).thenReturn(Optional.of(seed));
 		returned_seed=seedService.getSeedById(66);
 		assertEquals("Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.", returned_seed.getDescription());
 		assertEquals("Cauliflower seeds", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg", returned_seed.getPhotoLoc());
+		assertEquals("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg", returned_seed.getPhotoLoc());
 		assertEquals(500, returned_seed.getPrice());
 	}
 	
@@ -73,80 +75,46 @@ public class MockitoSeedServiceTest {
 		seed=new Seed();
 		seed.setDescription("This is Ceramic type pot");
 		seed.setName("Cream Stripes M");
-		//seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
+		seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
 		seed.setPrice(650);
 		Mockito.when(seedRepo.getByName("Cream Stripes M")).thenReturn(seed);
 		returned_seed=seedService.getSeedByName("Cream Stripes M");
 		assertEquals("This is Ceramic type pot", returned_seed.getDescription());
 		assertEquals("Cream Stripes M", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
+		assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
 		assertEquals(650, returned_seed.getPrice());
 	}
-	
-	/*@Test
-	public void deleteSeedByIdTest()
-	{
-		Seed seed1;
-		seed1=new Seed();
-		seed1.setDescription("This is Ceramic type pot");
-		seed1.setName("Cream Stripes M");
-		//seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
-		seed1.setPrice(650);
-		Seed responseSeed=new Seed();
-		responseSeed=seedService.deleteSeedById(66);
-		//Mockito.when(seedRepo.delete(seed)).thenReturn(null);
-		Mockito.doNothing().when(seedRepo).delete(seed1);
-		//returned_seed=seedService.deleteSeedById(66);
-		assertEquals(seed.getDescription(), responseSeed.getDescription());
-		//System.out.println(seed1.getName()+" "+ responseSeed.getClass());
-		assertEquals(seed1.getName(), responseSeed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
-		assertEquals(seed1.getPrice(), responseSeed.getPrice());
-	}*/
-	/*@Test
-	public void deleteSeedByIdTest2()
-	{
-		Seed seed1;
-		seed1=new Seed();
-		seed1.setDescription("This is Ceramic type pot");
-		seed1.setName("Cream Stripes M");
-		seed1.setPrice(650);
-		Mockito.doNothing().when(seedRepo).delete(seed1);
-		verify(seedRepo,times(1)).delete(seed1);
-		
-	}*/
+
 	@Test
-	public void deleteSeedByIdTest()
-	{
-		seed=new Seed();
-		//seed.setCategory(Type.CERMAIC_POT);
-		seed.setDescription("This is Ceramic type pot");
-		seed.setName("Cream Stripes M");
-		//seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
-		seed.setPrice(650);
-		Mockito.when(seedService.deleteSeedById(66)).thenReturn(seed);
-		returned_seed=seedService.deleteSeedById(66);
-		assertEquals("This is Ceramic type pot", returned_seed.getDescription());
-		//assertEquals(Type.CERMAIC_POT,returned_seed.getCategory());
-		assertEquals("Cream Stripes M", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
-		assertEquals(650, returned_seed.getPrice());
-	}
+	void deleteSeedById() {
+		int id = 10;
+		Seed seed = new Seed(10, "Rajma", 100, 1000, "Bean type Seed", "https://5.imimg.com/data5/YD/KX/IT/SELLER-30286003/lobia-beans-seeds-500x500.jpg");
 	
+		// Return seed
+		Mockito.when(seedRepo.findById(10)).thenReturn(Optional.of(seed));
+		
+		// Handling void methods
+		Mockito.doNothing().when(seedRepo).deleteById(10);
+		
+		// delete seed
+		seedService.deleteSeedById(id);
+	}
 	@Test
 	public void updateSeedPrice()
 	{
 		seed=new Seed();
-		seed.setDescription("This is Ceramic type pot");
-		seed.setName("Cream Stripes M");
-		//seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
+		seed.setDescription("This is flax seed");
+		seed.setName("Flax Seeds");
+		seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
 		seed.setPrice(777);
-		Mockito.when(seedRepo.getById(45)).thenReturn(seed);
+		Mockito.when(seedRepo.findById(66)).thenReturn(Optional.of(seed));
 		Mockito.when(seedRepo.save(seed)).thenReturn(seed);
-		returned_seed=seedService.updateSeedPrice(45,777);
-		assertEquals("This is Ceramic type pot", returned_seed.getDescription());
-		assertEquals("Cream Stripes M", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
+		returned_seed=seedService.updateSeedPrice(66,777);
+		assertEquals("This is flax seed", returned_seed.getDescription());
+		assertEquals("Flax Seeds", returned_seed.getName());
+		assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
 		assertEquals(777, returned_seed.getPrice());
 	}
+	
+	
 }

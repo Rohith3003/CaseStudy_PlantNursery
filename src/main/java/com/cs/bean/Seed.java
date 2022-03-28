@@ -1,15 +1,23 @@
 package com.cs.bean;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.checkerframework.checker.units.qual.min;
+import org.hibernate.validator.constraints.URL;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 @Entity
 @Data
 //@AllArgsConstructor
@@ -24,25 +32,19 @@ public class Seed {
 	@Size(min=4, message="Seed name should have atleast 4 characters")
 	private String name;
 	
-	//@URL(message="Must be a valid photo URL")
+	@URL(message="Must be a valid photo URL")
 	private String photoLoc;//Url of the image
-	
-	@Size(min = 8, message = "plant type invalid")
-	@NotEmpty(message = "Please enter plant type")
-	private String type;
-	
+
 	@NotNull
-	@Min(1)
+	@Min(10)
 	private double price;
 	
 	@NotNull
-	@Min(1)
+	@Min(20)
 	private int numberOfSeeds;
 	
 	
 	private String description;
-
-	
 
 	public void setName(String name) {
 		this.name = name;
@@ -73,19 +75,6 @@ public class Seed {
 	public String getName() {
 		return name;
 	}
-
-	
-
-	public String getType() {
-		return type;
-	}
-
-
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 
 	public String getDescription() {
 		return description;
@@ -122,13 +111,14 @@ public class Seed {
 	}
 
 
-	public Seed(int seedId, String name, double price, int numberOfSeeds, String description, String type) {
+	public Seed(int seedId, String name, double price, int numberOfSeeds, String description, String photoLoc) {
 		
 		this.seedId = seedId;
 		this.name = name;
 		this.setPrice(price);
 		this.numberOfSeeds = numberOfSeeds;
 		this.setDescription(description);
+		this.photoLoc = photoLoc;
 	}
 	public Seed() {
 		

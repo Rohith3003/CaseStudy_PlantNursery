@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cs.bean.Seed;
@@ -62,9 +63,14 @@ public class SeedController {
 	{
 		return new ResponseEntity<Seed>(seedService.updateSeedPhoto(id, photoLoc),HttpStatus.OK);
 	}
-	@DeleteMapping("deleteSeed/{id}")
-	public ResponseEntity<Seed> deleteById(@PathVariable("id") int id)
-	{
-		return new ResponseEntity<Seed>(seedService.deleteSeedById(id),HttpStatus.OK);
+//	@DeleteMapping("deleteSeed/{id}")
+//	public ResponseEntity<Void> deleteById(@PathVariable("id") int id)
+//	{
+//		return new ResponseEntity<Void>(seedService.deleteSeedById(id),HttpStatus.OK);
+//	}
+	@DeleteMapping("/deleteSeed/{id}")
+	ResponseEntity<Seed> deleteSeed(@PathVariable("id") int id) {
+		Seed deleteSeed = seedService.deleteSeedById(id);
+		return new ResponseEntity<>(deleteSeed, HttpStatus.OK); // 200 Ok
 	}
 }

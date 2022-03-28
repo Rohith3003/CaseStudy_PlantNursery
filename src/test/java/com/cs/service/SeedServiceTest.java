@@ -2,6 +2,8 @@ package com.cs.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -26,7 +28,7 @@ public class SeedServiceTest {
 
 		seed.setDescription("Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.");
 		seed.setName("Cauliflower Seeds");
-		//seed.setPhotoLoc("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg");
+		seed.setPhotoLoc("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg");
 		seed.setPrice(500);
 		returned_seed=seedService.addSeed(seed);
 	}
@@ -43,8 +45,9 @@ public class SeedServiceTest {
 	@Disabled
 	void deleteSeedById()
 	{
-		Seed result = seedService.deleteSeedById(101);
-		assertEquals(101,result.getSeedId());
+		seedService.deleteSeedById(101);
+		Seed result= seedService.getSeedById(101);
+		assertEquals(0,result.getNumberOfSeeds());
 	}
 	 @Test
 	 @Disabled
@@ -59,54 +62,18 @@ public class SeedServiceTest {
 		 Seed result= seedService.updateSeedPrice(101, 100);
 		 assertEquals(101,result.getPrice());
 	 }
-	/*@Test
+	@Test
 	@Disabled
 	void updateSeedImageById()
 	{
-		Seed result = seedService.updateSeedImageById(1,101,"image");
-		assertEquals("image",result.getSeedImage());
-	}*/
+		Seed result = seedService.updateSeedPhoto(101,"image");
+		assertEquals("image",result.getPhotoLoc());
+	}
 	
+	@Test
+	void getAllSeed() {
+		List<Seed> seeds = seedService.getAllSeeds();
+		assertEquals(14, seeds.size());
+	}
 
-	/*@Test
-	//@Disabled
-	public void getSeedByIdTest()
-	{
-		Seed returned_seed=seedService.getSeedById(69);
-		assertEquals("Cauliflower seeds seeds have always believed in sustainable development of environment by believing in growing a plant.", returned_seed.getDescription());
-		assertEquals("Cauliflower Seeds", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg", returned_seed.getPhotoLoc());
-		assertEquals(500, returned_seed.getPrice());
-	}
-	
-	@Test
-	public void getSeedByNameTest()
-	{
-		Seed returned_seed=seedService.getSeedByName("Tomato Seed");
-		assertEquals("This is Tomato Seed", returned_seed.getDescription());
-		assertEquals("Tomato Seed", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", returned_seed.getPhotoLoc());
-		assertEquals(500, returned_seed.getPrice());
-	}
-	
-	@Test
-	//@Disabled
-	public void deleteSeedByIdTest()
-	{
-		Seed returned_seed=seedService.deleteSeedById(70);
-		assertEquals("This is Tomato Seed", returned_seed.getDescription());
-		assertEquals("Tomato Seed", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", returned_seed.getPhotoLoc());
-		assertEquals(500, returned_seed.getPrice());
-	}
-	
-	@Test
-	public void updateSeedPrice()
-	{
-		Seed returned_seed=seedService.updateSeedPrice(68,777);
-		assertEquals("This is Tomato Seed", returned_seed.getDescription());
-		assertEquals("Tomato Seed", returned_seed.getName());
-		//assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", returned_seed.getPhotoLoc());
-		assertEquals(500, returned_seed.getPrice());
-	}*/
 }

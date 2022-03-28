@@ -22,11 +22,14 @@ public interface ISeedService {
 		 public Seed getSeedByName(String name);
 		
 		//delete Seed by Id
-		 public Seed deleteSeedById(int id);
+		 Seed deleteSeedById(int id);
+		void deleteSeed(int id);
 		 
-		//Update planter location
+		//Update seed location
 		public Seed updateSeedPhoto(int id, String photoLoc);
 		
-		//Get all planters
+		//Get all seeds
 		public List<Seed> getAllSeeds();
+
+	
 }

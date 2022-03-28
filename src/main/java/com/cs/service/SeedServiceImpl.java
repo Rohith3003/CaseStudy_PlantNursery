@@ -99,8 +99,8 @@ public class SeedServiceImpl implements ISeedService {
 		return seedRepo.getByName(name);
 	}
 
-	@Override
-	public Seed deleteSeedById(int id) {
+	//@Override
+	/*public Seed deleteSeedById(int id) {
 //		Optional<EndUser> endUser = endUserRepo.findById(id);
 //		if(!endUser.isPresent())
 //		{
@@ -129,8 +129,39 @@ public class SeedServiceImpl implements ISeedService {
 		//Use JPARepository method
 		//seedRepo.delete(seed);
 		//return seed;
+	}*/
+//	@Override
+//	public void deleteSeed(int id) {
+//		// TODO Auto-generated method stub
+//		Optional<Seed> opt = seedRepo.findById(id);
+//		if(!opt.isPresent()) {
+//			throw new SeedNotFoundException("Seed not found with given id "+ id);
+//		}
+//		seedRepo.deleteById(id);
+//		
+//	}
+	@Override
+	public Seed deleteSeedById(int id) {
+		// Check given Seed is there in db or not
+		Optional<Seed> opt = seedRepo.findById(id);
+		if(!opt.isPresent()) {
+			throw new SeedNotFoundException("Seed not found with given id "+ id);
+		}
+		// delete seed
+		seedRepo.deleteById(id);
+		return opt.get();
+		
 	}
-
+	@Override
+	public void deleteSeed(int id) {
+		// TODO Auto-generated method stub
+		Optional<Seed> opt = seedRepo.findById(id);
+		if(!opt.isPresent()) {
+			throw new SeedNotFoundException("Seed not found with given id "+ id);
+		}
+		seedRepo.deleteById(id);
+		
+	}
 	@Override
 	public Seed updateSeedPrice(int id,double price) {
 //		Optional<EndUser> endUser = endUserRepo.findById(id);
@@ -159,7 +190,6 @@ public class SeedServiceImpl implements ISeedService {
 		//seed.setPrice(price);
 		//return seedRepo.save(seed);
 	}
-
 
 	
 }
