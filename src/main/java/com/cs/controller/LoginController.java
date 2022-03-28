@@ -32,12 +32,6 @@ public class LoginController {
 	@Autowired
 	ILoginService loginServ;
 	
-	//add email, password to database
-	@PostMapping("/user/login")
-	ResponseEntity<LoginDto> addLogin(@Valid @RequestBody Login loginDetails){
-		LoginDto login = loginServ.addLogin(loginDetails);
-		return new ResponseEntity<>(login, HttpStatus.OK);
-	}
 	
 	//if email and password is correct make isLogin true
 	@PostMapping("/user/loginNet")

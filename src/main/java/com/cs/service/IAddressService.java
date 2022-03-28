@@ -15,7 +15,7 @@ import com.cs.bean.Address;
  */
 public interface IAddressService {
 
-	Address addAddress(Address address);
+	Address addAddress(int userId, Address address);
 
 	Address deleteAddressById(int id);
 

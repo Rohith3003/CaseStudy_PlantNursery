@@ -46,16 +46,6 @@ class LoginServiceMockitoTest {
 		MockitoAnnotations.openMocks(this);
 	}
 
-	@Test
-	void addMethod() {
-		Login login = new Login("satyamkkh@yahoo.com", "password", false);
-		
-		Mockito.when(loginRepo.save(login)).thenReturn(login);
-		
-		LoginDto loginOut = loginServ.addLogin(login);
-		assertNotEquals(null, loginOut);
-		assertEquals("satyamkkh@yahoo.com", loginOut.getEmail());
-	}
 
 	@Test
 	void loginNetwork() {

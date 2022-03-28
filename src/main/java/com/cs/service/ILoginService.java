@@ -17,7 +17,6 @@ import com.cs.dto.LoginDto;
  */ 
 
 public interface ILoginService {
-	LoginDto addLogin(Login addL);
 	LoginDto loginNetwork(Login loginDetails);
 	LoginDto logoutNetwork(String emailId);
 	String resetPassword(String emailId);

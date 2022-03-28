@@ -35,20 +35,6 @@ public class LoginServiceImpl implements ILoginService {
 		return m.matches();
 	}
 
-	//add login credentials to database made for initial testing only
-	@Override
-	public LoginDto addLogin(Login addL) {
-		if (patternMatches(addL.getEmail()) == false) {
-			throw new LoginExceptions("Please enter a valid email");
-		}
-
-		loginRepo.save(addL);
-
-		LoginDto loginD = new LoginDto();
-		loginD.setEmail(addL.getEmail());
-		loginD.setLogin(addL.isLogin());
-		return loginD;
-	}
 
 	//used to login in the network this method will set isLogin variable to true if email and password is correct
 	@Override

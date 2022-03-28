@@ -27,7 +27,7 @@ class AddressServiceTest {
 	void addAddressTest() {
 		Address address = new Address(303, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
 				"India");
-		Address address1 = addressService.addAddress(address);
+		Address address1 = addressService.addAddress(8,address);
 		assertEquals(address, address1);
 	}
 
