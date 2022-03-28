@@ -28,19 +28,6 @@ class LoginServiceTest {
 	
 	@Test
 	@Disabled
-	void addMethod() {
-		Login login = new Login();
-		login.setEmail("satyamkkh@yahoo.com");
-		login.setPassword("password");
-		login.setLogin(false);
-		
-		LoginDto testLogin = loginServ.addLogin(login);
-		assertNotEquals(null, testLogin);
-		assertEquals("satyamkkh@yahoo.com", testLogin.getEmail());
-	}
-	
-	@Test
-	@Disabled
 	void loginNetwork() {
 		Login login = new Login("satyamkkh@yahoo.com", "password", false);
 		

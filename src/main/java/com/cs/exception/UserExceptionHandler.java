@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cs.bean.UserErrorResponse;
@@ -16,6 +17,7 @@ import com.cs.bean.UserErrorResponse;
  * @author Rohith(Employee id: 46191986)
  *
  */
+@ControllerAdvice
 public class UserExceptionHandler {
 
 	@ExceptionHandler

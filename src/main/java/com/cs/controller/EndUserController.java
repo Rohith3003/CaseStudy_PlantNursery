@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cs.bean.EndUser;
+import com.cs.dto.Register;
 import com.cs.service.IEndUserService;
 
 
@@ -22,7 +23,7 @@ public class EndUserController
 	IEndUserService endUserServ;
 
 	@PostMapping("/addCustomer")
-	ResponseEntity<EndUser> addCustomer(@RequestBody EndUser customer) 
+	ResponseEntity<EndUser> addCustomer(@RequestBody Register customer) 
 	{
 		EndUser endUser = endUserServ.addCustomer(customer);
 		return new ResponseEntity<>(endUser, HttpStatus.OK);

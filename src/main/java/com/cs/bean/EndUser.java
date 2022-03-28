@@ -17,6 +17,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,7 +31,7 @@ import lombok.Setter;
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor
-public class EndUser{
+public class EndUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -37,29 +39,25 @@ public class EndUser{
 	private String mobileNumber;
 	private String fullName;
 	private boolean isAdmin;
-	
+
 	@CreatedDate
 	@Setter(AccessLevel.PROTECTED)
-    Date createdAt;
-    
-	
-    @LastModifiedDate
-    @Setter(AccessLevel.PROTECTED)
-    Date modifiedAt;
-    
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+	Date createdAt;
+
+	@LastModifiedDate
+	@Setter(AccessLevel.PROTECTED)
+	Date modifiedAt;
+
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "login_Id")
 	private Login login;
-    
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "login_Id")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_Id")
 	private Address address;
-    
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "login_Id")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_Id")
 	private Cart cart;
-    
+
 }

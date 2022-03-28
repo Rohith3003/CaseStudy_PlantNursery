@@ -36,9 +36,9 @@ public class AddressController {
 	 * @param address
 	 * @return returns the address object which is added to database
 	 */
-	@PostMapping("/addAddress")
-	ResponseEntity<Address> addAddress(@RequestBody Address address) {
-		return new ResponseEntity<Address>(addressService.addAddress(address), HttpStatus.OK);
+	@PostMapping("/addAddress/{userId}")
+	ResponseEntity<Address> addAddress(@PathVariable("userId") int userId, @RequestBody Address address) {
+		return new ResponseEntity<Address>(addressService.addAddress(userId,address), HttpStatus.OK);
 	}
 
 	/**

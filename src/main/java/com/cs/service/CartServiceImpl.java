@@ -5,11 +5,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cs.bean.Cart;
+import com.cs.bean.Fertilizer;
 import com.cs.bean.GardenDecor;
+import com.cs.bean.Plant;
+import com.cs.bean.Planter;
+import com.cs.bean.Seed;
 import com.cs.exception.CartException;
+import com.cs.exception.FertilizerNotFoundException;
 import com.cs.exception.GardenDecorException;
 import com.cs.repository.ICartRepository;
+import com.cs.repository.IFertilizerRepository;
 import com.cs.repository.IGardenDecorRepository;
+import com.cs.repository.IPlantRepository;
+import com.cs.repository.IPlanterRepository;
+import com.cs.repository.ISeedRepository;
 
 @Service
 public class CartServiceImpl implements ICartService
@@ -18,14 +27,14 @@ public class CartServiceImpl implements ICartService
 	ICartRepository cartRepo;
 	@Autowired
 	IGardenDecorRepository gardenDecorRepo;
-	/*@Autowired
+	@Autowired
 	ISeedRepository seedRepo;
 	@Autowired
 	IPlantRepository plantRepo;
 	@Autowired
-	IPlanterRepository PlanterRepo;
+	IPlanterRepository planterRepo;
 	@Autowired
-	IFertilizerRepository fertilizerRepo;*/
+	IFertilizerRepository fertilizerRepo;
 	
 	// view the cart
 	@Override
@@ -56,12 +65,13 @@ public class CartServiceImpl implements ICartService
 		}
 		else
 		{
-			//List<GardenDecor> al = cart.get().getGardenDecor();
-			//al.add(gardenDecor.get());
-			//cart.get().setGardenDecor(al);
+			List<GardenDecor> al = cart.get().getGardenDecor();
+			al.add(gardenDecor.get());
+			cart.get().setGardenDecor(al);
 		}
 		cost = cost + gardenDecor.get().getGardenDecorPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 
@@ -82,16 +92,17 @@ public class CartServiceImpl implements ICartService
 		}
 		else
 		{
-			//List<GardenDecor> al = cart.get().getGardenDecor();
-			//al.remove(gardenDecor.get());
-			//cart.get().setGardenDecor(al);
+			List<GardenDecor> al = cart.get().getGardenDecor();
+			al.remove(gardenDecor.get());
+			cart.get().setGardenDecor(al);
 		}
 		cost = cost - gardenDecor.get().getGardenDecorPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 
-	/*
+	
  	// add seed to cart
 	@Override
 	public Cart addSeedToCart(int cartId, int seedId) 
@@ -113,8 +124,9 @@ public class CartServiceImpl implements ICartService
 			al.add(seed.get());
 			cart.get().setSeed(al);
 		}
-		cost = cost + seed.get().getSeedPrice();
+		cost = cost + seed.get().getPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 	
@@ -139,8 +151,9 @@ public class CartServiceImpl implements ICartService
 			al.remove(seed.get());
 			cart.get().setSeed(al);
 		}
-		cost = cost - seed.get().getSeedPrice();
+		cost = cost - seed.get().getPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 
@@ -165,8 +178,9 @@ public class CartServiceImpl implements ICartService
 			al.add(plant.get());
 			cart.get().setPlant(al);
 		}
-		cost = cost + plant.get().getPlantPrice();
+		cost = cost + plant.get().getPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 
@@ -191,60 +205,73 @@ public class CartServiceImpl implements ICartService
 			al.remove(plant.get());
 			cart.get().setPlant(al);
 		}
-		cost = cost - plant.get().getPlantPrice();
+		cost = cost - plant.get().getPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 
-	// add fertilizer to cart
+	/**
+	 * Adds the fertilizer of given id to the customer cart of given id.
+	 * @param cartId
+	 * @param fertilizerId
+	 * @return returns the updated cart object.
+	 */
 	@Override
 	public Cart addFertilizerToCart(int cartId, int fertilizerId) 
 	{
-		Optional<GardenDecor> fertilizer = fertilizerRepo.findById(fertilizerId);
+		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<Cart> cart = cartRepo.findById(cartId);
 		double cost = cart.get().getCartCost();
-		if(!fertilizer.isPresent())
+		if(fertilizer.isEmpty())
 		{
-			throw new GardenDecorException("fertilizer not found with the given id:" + fertilizerId);
+			throw new FertilizerNotFoundException("fertilizer not found with the given id:" + fertilizerId);
 		}
-		if(!cart.isPresent())
+		if(cart.isEmpty())
 		{
 			throw new CartException("cart not found with the given id:" + cartId);
 		}
 		else
 		{
-			List<Fertilizer> al = cart.get().getFertilizer();
-			al.add(fertilizer.get());
-			cart.get().setFertilizer(al);
+			List<Fertilizer> fertilizers = cart.get().getFertilizer();
+			fertilizers.add(fertilizer.get());
+			cart.get().setFertilizer(fertilizers);
 		}
 		cost = cost + fertilizer.get().getFertilizerPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 
-	// remove fertilizer from cart
+	/**
+	 * Removes the fertilizer of given id from the customer cart of given id.
+	 * @param cartId
+	 * @param fertilizerId
+	 * @return returns the updated cart object.
+	 */
 	@Override
 	public Cart removeFertilizerFromCart(int cartId, int fertilizerId) 
 	{
-		Optional<GardenDecor> fertilizer = fertilizerRepo.findById(fertilizerId);
+		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<Cart> cart = cartRepo.findById(cartId);
 		double cost = cart.get().getCartCost();
-		if(!fertilizer.isPresent())
+		if(fertilizer.isEmpty())
 		{
-			throw new GardenDecorException("fertilizer not found with the given id:" + fertilizerId);
+			throw new FertilizerNotFoundException("fertilizer not found with the given id:" + fertilizerId);
 		}
-		if(!cart.isPresent())
+		if(cart.isEmpty())
 		{
 			throw new CartException("cart not found with the given id:" + cartId);
 		}
 		else
 		{
-			List<Fertilizer> al = cart.get().getFertilizer();
-			al.remove(fertilizer.get());
-			cart.get().setFertilizer(al);
+			List<Fertilizer> fertilizers = cart.get().getFertilizer();
+			fertilizers.remove(fertilizer.get());
+			cart.get().setFertilizer(fertilizers);
 		}
 		cost = cost - fertilizer.get().getFertilizerPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 
@@ -269,7 +296,7 @@ public class CartServiceImpl implements ICartService
 			al.add(planter.get());
 			cart.get().setPlanter(al);
 		}
-		cost = cost + planter.get().getPlanterPrice();
+		cost = cost + planter.get().getPrice();
 		cart.get().setCartCost(cost);
 		return cart.get();
 	}
@@ -295,9 +322,9 @@ public class CartServiceImpl implements ICartService
 			al.remove(planter.get());
 			cart.get().setPlanter(al);
 		}
-		cost = cost - planter.get().getPlanterPrice();
+		cost = cost - planter.get().getPrice();
 		cart.get().setCartCost(cost);
 		return cart.get();
-	}*/
+	}
 
 }

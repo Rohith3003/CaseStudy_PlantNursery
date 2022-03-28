@@ -36,12 +36,12 @@ public class FertilizerServiceImp implements IFertilizerService {
 		if (endUser.isEmpty()) {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
-			throw new UserNotFoundException("only admin can add garden decor to the database");
+			throw new UserNotFoundException("only admin can add fertilizer to the database");
 		}
-//		else if(!endUser.get().getLogin().isLogin())
-//		{
-//			throw new UserNotFoundException("first login to add garden decor to the database");
-//		}
+		else if(!endUser.get().getLogin().isLogin())
+		{
+			throw new UserNotFoundException("first login to add fertilizer to the database");
+		}
 		else {
 			return fertilizerRepo.save(fertilizer);
 		}

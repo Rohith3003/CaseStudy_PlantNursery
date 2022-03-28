@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cs.bean.Address;
+import com.cs.bean.EndUser;
 import com.cs.exception.AddressNotFoundException;
 import com.cs.repository.IAddressRepository;
+import com.cs.repository.IEndUserRepository;
 
 /**
  * This class is used to provide services to AddressController so that we can
@@ -22,10 +24,16 @@ public class AddressServiceImp implements IAddressService {
 
 	@Autowired
 	IAddressRepository addressRepo;
+	
+	@Autowired
+	IEndUserRepository endUserRepo;
 
 	// adds new address to database.
 	@Override
-	public Address addAddress(Address address) {
+	public Address addAddress(int userId, Address address) {
+		EndUser user = endUserRepo.getById(userId);
+		user.setAddress(address);
+		endUserRepo.save(user);
 		return addressRepo.save(address);
 	}
 
