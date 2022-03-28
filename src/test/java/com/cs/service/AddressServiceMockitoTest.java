@@ -17,6 +17,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.cs.bean.Address;
 import com.cs.repository.IAddressRepository;
 
+/**
+ * This class provides Mockito test cases for AddressService.
+ * 
+ * @author Rohith(Employee id: 46191986)
+ *
+ */
 @ExtendWith(SpringExtension.class)
 class AddressServiceMockitoTest {
 
@@ -80,8 +86,7 @@ class AddressServiceMockitoTest {
 	}
 
 	@Test
-	void deleteAddressByIdTest()
-	{
+	void deleteAddressByIdTest() {
 		Address address = new Address(28, 303, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
 				"India");
 		Mockito.when(addressRepo.findById(28)).thenReturn(Optional.of(address));

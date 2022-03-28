@@ -17,9 +17,7 @@ import lombok.NoArgsConstructor;
  * fertilizerId, fertilizerName, fertilizerImage, fertilizerPrice,
  * fertilizerDescription and fertilizerQuantity
  * 
- * @author Rohith
- * @version 1.0
- * @since 28-03-2022
+ * @author Rohith(Employee id: 46191986)
  */
 
 @Data

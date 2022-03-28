@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
  * This class represents the address entity for user. Consists of 8 members
  * addressId, flatNum, buildingName, colony, city, state, pincode and country.
  * 
- * @author Rohith
- * @version 1.0.0
- * @since 28-03-2022
+ * @author Rohith(Employee id: 46191986)
  *
  */
 @Data

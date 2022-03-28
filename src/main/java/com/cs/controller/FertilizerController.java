@@ -19,6 +19,13 @@ import com.cs.bean.Fertilizer;
 import com.cs.dto.FertilizerDto;
 import com.cs.service.IFertilizerService;
 
+/**
+ * This class is used as controller to add, delete, update and retrieve
+ * fertilizer to and from database
+ * 
+ * @author Rohith(Employee id: 46191986)
+ *
+ */
 @RestController
 public class FertilizerController {
 

@@ -11,9 +11,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cs.bean.Address;
 
+/**
+ * This class provides basic JUnit test cases for AddressService class.
+ * 
+ * @author Rohith
+ *
+ */
 @SpringBootTest
 class AddressServiceTest {
-
 	@Autowired
 	IAddressService addressService;
 
@@ -48,16 +53,15 @@ class AddressServiceTest {
 
 	@Test
 	void updateAddressByIdTest() {
-		Address address = new Address(16,305, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
+		Address address = new Address(16, 305, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
 				"India");
 		Address updatedAddress = addressService.updateAddressById(16, address);
 		assertEquals(address, updatedAddress);
 	}
-	
+
 	@Test
 	@Disabled
-	void deleteAddressbyIdTest()
-	{
+	void deleteAddressbyIdTest() {
 		Address address = addressService.deleteAddressById(15);
 		assertEquals(15, address.getAddressId());
 		assertEquals("ABC Apartment", address.getBuildingName());

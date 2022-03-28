@@ -10,8 +10,6 @@ import com.cs.bean.Fertilizer;
  * fertilizer into or from database
  * 
  * @author Rohith(Employee id: 46191986)
- * @version 1.0.0
- * @since 28-03-2022
  *
  */
 public interface IFertilizerService {
