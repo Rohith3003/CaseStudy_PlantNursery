@@ -12,6 +12,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This class is regarding fertilizer entity. Consists of 6 members
+ * fertilizerId, fertilizerName, fertilizerImage, fertilizerPrice,
+ * fertilizerDescription and fertilizerQuantity
+ * 
+ * @author Rohith
+ * @version 1.0
+ * @since 28-03-2022
+ */
+
 @Data
 @Entity
 @AllArgsConstructor

@@ -2,7 +2,7 @@ package com.cs.exception;
 
 /**
  * This is a user defined exception class used to generate customized
- * FertilizerNotFound Exceptions
+ * AddressNotFound Exceptions
  * 
  * @author Rohith(Employee id: 46191986)
  * @version 1.0.0
@@ -10,17 +10,17 @@ package com.cs.exception;
  *
  */
 @SuppressWarnings("serial")
-public class FertilizerNotFoundException extends RuntimeException {
+public class AddressNotFoundException extends RuntimeException {
 
-	public FertilizerNotFoundException() {
+	public AddressNotFoundException() {
 		super();
 	}
 
-	public FertilizerNotFoundException(String message) {
+	public AddressNotFoundException(String message) {
 		super(message);
 	}
 
-	public FertilizerNotFoundException(Throwable cause) {
+	public AddressNotFoundException(Throwable cause) {
 		super(cause);
 	}
 

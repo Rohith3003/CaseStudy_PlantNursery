@@ -7,6 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import com.cs.bean.Fertilizer;
 
+/**
+ * This interface acts as repository which communicates with database and
+ * executes all the queries coming from FertilizerService to database
+ * 
+ * @author Rohith(Employee id: 46191986)
+ * @version 1.0.0
+ * @since 28-03-2022
+ *
+ */
 @Repository
 public interface IFertilizerRepository extends JpaRepository<Fertilizer, Integer> {
 
