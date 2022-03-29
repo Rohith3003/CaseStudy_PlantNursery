@@ -22,7 +22,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 	@Override
 	public GardenDecor addGardenDecor(int id, GardenDecor gardenDecor) 
 	{
-		/*Optional<EndUser> endUser = endUserRepo.findById(id);
+		Optional<EndUser> endUser = endUserRepo.findById(id);
 		if(!endUser.isPresent())
 		{
 			throw new GardenDecorException("admin not found with the given id:" + id);
@@ -35,7 +35,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		{
 			throw new GardenDecorException("first login to add garden decor to the database");
 		}
-		else*/
+		else
 		{
 			return gardenDecorRepo.save(gardenDecor);
 		}
@@ -65,7 +65,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 	public GardenDecor updateGardenDecorNameById(int id, int gardenDecorId, String gardenDecorName) 
 	{
 		Optional<GardenDecor> gardenDecor = gardenDecorRepo.findById(gardenDecorId);
-		/*Optional<EndUser> endUser = endUserRepo.findById(id);
+		Optional<EndUser> endUser = endUserRepo.findById(id);
 		if(!endUser.isPresent())
 		{
 			throw new GardenDecorException("admin not found with the given id:" + id);
@@ -82,7 +82,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		{
 			throw new GardenDecorException("garden decor not found with the given id:" + gardenDecorId);
 		}
-		else*/
+		else
 		{
 			gardenDecor.get().setGardenDecorName(gardenDecorName);
 			return gardenDecorRepo.save(gardenDecor.get());
@@ -94,7 +94,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 	public GardenDecor updateGardenDecorPriceById(int id, int gardenDecorId, double gardenDecorPrice) 
 	{
 		Optional<GardenDecor> gardenDecor = gardenDecorRepo.findById(gardenDecorId);
-		/*Optional<EndUser> endUser = endUserRepo.findById(id);
+		Optional<EndUser> endUser = endUserRepo.findById(id);
 		if(!endUser.isPresent())
 		{
 			throw new GardenDecorException("admin not found with the given id:" + id);
@@ -111,7 +111,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		{
 			throw new GardenDecorException("garden decor not found with the given id:" + gardenDecorId);
 		}
-		else*/
+		else
 		{
 			gardenDecor.get().setGardenDecorPrice(gardenDecorPrice);
 			return gardenDecorRepo.save(gardenDecor.get());
@@ -123,7 +123,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 	public GardenDecor updateGardenDecorDescriptionById(int id, int gardenDecorId, String gardenDecorDescription) 
 	{
 		Optional<GardenDecor> gardenDecor = gardenDecorRepo.findById(gardenDecorId);
-		/*Optional<EndUser> endUser = endUserRepo.findById(id);
+		Optional<EndUser> endUser = endUserRepo.findById(id);
 		if(!endUser.isPresent())
 		{
 			throw new GardenDecorException("admin not found with the given id:" + id);
@@ -140,7 +140,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		{
 			throw new GardenDecorException("garden decor not found with the given id:" + gardenDecorId);
 		}
-		else*/
+		else
 		{
 			gardenDecor.get().setGardenDecorDescription(gardenDecorDescription);
 			return gardenDecorRepo.save(gardenDecor.get());
@@ -152,7 +152,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 	public GardenDecor updateGardenDecorImageById(int id, int gardenDecorId, String gardenDecorImage) 
 	{
 		Optional<GardenDecor> gardenDecor = gardenDecorRepo.findById(gardenDecorId);
-		/*Optional<EndUser> endUser = endUserRepo.findById(id);
+		Optional<EndUser> endUser = endUserRepo.findById(id);
 		if(!endUser.isPresent())
 		{
 			throw new GardenDecorException("admin not found with the given id:" + id);
@@ -169,7 +169,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		{
 			throw new GardenDecorException("garden decor not found with the given id:" + gardenDecorId);
 		}
-		else*/
+		else
 		{
 			gardenDecor.get().setGardenDecorImage(gardenDecorImage);
 			return gardenDecorRepo.save(gardenDecor.get());
@@ -181,7 +181,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 	public GardenDecor deleteGardenDecorById(int id, int gardenDecorId) 
 	{
 		Optional<GardenDecor> gardenDecor = gardenDecorRepo.findById(gardenDecorId);
-		/*Optional<EndUser> endUser = endUserRepo.findById(id);		
+		Optional<EndUser> endUser = endUserRepo.findById(id);		
 		if(!endUser.isPresent())
 		{
 			throw new GardenDecorException("admin not found with the given id:" + id);
@@ -198,7 +198,7 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		{
 			throw new GardenDecorException("garden decor not found with the given id:" + gardenDecorId);
 		}
-		else*/
+		else
 		{
 			gardenDecorRepo.deleteById(gardenDecorId);
 			return gardenDecor.get();

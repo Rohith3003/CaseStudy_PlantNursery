@@ -13,6 +13,9 @@ import com.cs.bean.Seed;
 import com.cs.exception.CartException;
 import com.cs.exception.FertilizerNotFoundException;
 import com.cs.exception.GardenDecorException;
+import com.cs.exception.PlantNotFoundException;
+import com.cs.exception.PlanterNotFoundException;
+import com.cs.exception.SeedNotFoundException;
 import com.cs.repository.ICartRepository;
 import com.cs.repository.IFertilizerRepository;
 import com.cs.repository.IGardenDecorRepository;
@@ -112,7 +115,7 @@ public class CartServiceImpl implements ICartService
 		double cost = cart.get().getCartCost();
 		if(!seed.isPresent())
 		{
-			throw new GardenDecorException("seed not found with the given id:" + seedId);
+			throw new SeedNotFoundException("seed not found with the given id:" + seedId);
 		}
 		if(!cart.isPresent())
 		{
@@ -139,7 +142,7 @@ public class CartServiceImpl implements ICartService
 		double cost = cart.get().getCartCost();
 		if(!seed.isPresent())
 		{
-			throw new GardenDecorException("seed not found with the given id:" + seedId);
+			throw new SeedNotFoundException("seed not found with the given id:" + seedId);
 		}
 		if(!cart.isPresent())
 		{
@@ -166,7 +169,7 @@ public class CartServiceImpl implements ICartService
 		double cost = cart.get().getCartCost();
 		if(!plant.isPresent())
 		{
-			throw new GardenDecorException("plant not found with the given id:" + plantId);
+			throw new PlanterNotFoundException("plant not found with the given id:" + plantId);
 		}
 		if(!cart.isPresent())
 		{
@@ -193,7 +196,7 @@ public class CartServiceImpl implements ICartService
 		double cost = cart.get().getCartCost();
 		if(!plant.isPresent())
 		{
-			throw new GardenDecorException("plant not found with the given id:" + plantId);
+			throw new PlantNotFoundException("plant not found with the given id:" + plantId);
 		}
 		if(!cart.isPresent())
 		{
@@ -284,7 +287,7 @@ public class CartServiceImpl implements ICartService
 		double cost = cart.get().getCartCost();
 		if(!planter.isPresent())
 		{
-			throw new GardenDecorException("planter not found with the given id:" + planterId);
+			throw new PlanterNotFoundException("planter not found with the given id:" + planterId);
 		}
 		if(!cart.isPresent())
 		{
@@ -310,7 +313,7 @@ public class CartServiceImpl implements ICartService
 		double cost = cart.get().getCartCost();
 		if(!planter.isPresent())
 		{
-			throw new GardenDecorException("planter not found with the given id:" + planterId);
+			throw new PlanterNotFoundException("planter not found with the given id:" + planterId);
 		}
 		if(!cart.isPresent())
 		{

@@ -8,6 +8,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
+import org.hibernate.validator.constraints.URL;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,7 +33,7 @@ public class Fertilizer {
 	private int fertilizerId;
 	@NotBlank(message = "Fertilizer name should not be empty")
 	private String fertilizerName;
-	@NotBlank(message = "Fertilizer image cannot be blank")
+	@URL(message="Must be a valid photo URL")
 	private String fertilizerImage;
 	@Positive(message = "Price cannot be less than or equal to zero")
 	private double fertilizerPrice;

@@ -15,7 +15,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.cs.bean.Address;
+import com.cs.bean.EndUser;
 import com.cs.repository.IAddressRepository;
+import com.cs.repository.IEndUserRepository;
 
 /**
  * This class provides Mockito test cases for AddressService.
@@ -31,6 +33,9 @@ class AddressServiceMockitoTest {
 
 	@MockBean
 	IAddressRepository addressRepo;
+	
+	@MockBean
+	IEndUserRepository endUserRepo;
 
 	@BeforeEach
 	void init() {
@@ -41,6 +46,9 @@ class AddressServiceMockitoTest {
 	void addAddressTest() {
 		Address address = new Address(303, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
 				"India");
+		EndUser endUser  = new EndUser();
+		endUser.setId(8);
+		Mockito.when(endUserRepo.getById(8)).thenReturn(endUser);
 		Mockito.when(addressRepo.save(address)).thenReturn(address);
 		Address address1 = addressService.addAddress(8,address);
 		assertEquals(address, address1);
