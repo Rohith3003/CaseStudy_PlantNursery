@@ -42,7 +42,7 @@ public class MockitoPlanterServiceTest {
 		planter.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
 		planter.setPrice(650);
 		Mockito.when(planterRepo.save(planter)).thenReturn(planter);
-		returned_planter=planterService.addPlanter(planter);
+		returned_planter=planterService.addPlanter(planter,1);
 		assertEquals("This is Ceramic type pot", returned_planter.getDescription());
 		assertEquals(Type.CERMAIC_POT,returned_planter.getCategory());
 		assertEquals("Cream Stripes M", returned_planter.getName());
@@ -98,7 +98,7 @@ public class MockitoPlanterServiceTest {
 		//Mockito.when(planterService.deletePlanterById(66)).thenReturn(planter);
 		Mockito.when(planterRepo.findById(66)).thenReturn(Optional.of(planter));
 		Mockito.doNothing().when(planterRepo).delete(planter);
-		returned_planter=planterService.deletePlanterById(66);
+		returned_planter=planterService.deletePlanterById(66,1);
 		assertEquals("This is Ceramic type pot", returned_planter.getDescription());
 		assertEquals(Type.CERMAIC_POT,returned_planter.getCategory());
 		assertEquals("Cream Stripes M", returned_planter.getName());
@@ -117,7 +117,7 @@ public class MockitoPlanterServiceTest {
 		planter.setPrice(777);
 		Mockito.when(planterRepo.findById(66)).thenReturn(Optional.of(planter));
 		Mockito.when(planterRepo.save(planter)).thenReturn(planter);
-		returned_planter=planterService.updatePlanterPrice(66,777);
+		returned_planter=planterService.updatePlanterPrice(66,777,1);
 		assertEquals("This is Ceramic type pot", returned_planter.getDescription());
 		assertEquals(Type.CERMAIC_POT,returned_planter.getCategory());
 		assertEquals("Cream Stripes M", returned_planter.getName());

@@ -1,5 +1,6 @@
 package com.cs.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -34,10 +35,10 @@ public class Planter {
 	private Type category; //Belongs to one of the pre-defined Enum Type
 	
 	@NotEmpty
-	@Size(min=10,max=30,message = "Description should be atleast 10 char and maximum 30 chars")
+	@Size(min=10,message = "Description should be atleast 10 char and maximum 30 chars")
 	private String description;//Description of the product
-	
-	@Min(100)
+
 	@Max(10000)
+	@Min(100)
 	private float price;//Price of the planter
 }
