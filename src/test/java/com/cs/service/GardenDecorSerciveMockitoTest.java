@@ -23,8 +23,9 @@ import com.cs.repository.IEndUserRepository;
 import com.cs.repository.IGardenDecorRepository;
 
 /**
+ * This class provides Mockito test cases for GardenDecorService.
  * 
- * @author Mayank Kumar (Employee ID: 46191925)
+ * @author Mayank Kumar(Employee ID: 46191925)
  *
  */
 @ExtendWith(SpringExtension.class)
