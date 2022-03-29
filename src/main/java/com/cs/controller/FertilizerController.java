@@ -32,32 +32,59 @@ public class FertilizerController {
 	@Autowired
 	IFertilizerService fertilizerService;
 
-	// adds new fertilizer into database
+	/**
+	 * Adds new fertilizer to the database.
+	 * 
+	 * @param userId
+	 * @param fertilizer
+	 * @return Returns the fertilizer object which is persisted in database.
+	 */
 	@PostMapping("/addFertilizer/{userId}")
 	ResponseEntity<Fertilizer> addFertilizer(@PathVariable("userId") int userId,
 			@Valid @RequestBody Fertilizer fertilizer) {
 		return new ResponseEntity<Fertilizer>(fertilizerService.addFertilizer(userId, fertilizer), HttpStatus.OK);
 	}
 
-	// retrieves and returns the fertilizer from database based on given id.
+	/**
+	 * Retrieves the fertilizer of given id from database.
+	 * 
+	 * @param id
+	 * @return Returns the fertilizer of given id.
+	 */
 	@GetMapping("/fertilizer/{id}")
 	ResponseEntity<Fertilizer> getFertilizerById(@PathVariable("id") int id) {
 		return new ResponseEntity<Fertilizer>(fertilizerService.getFertilizerById(id), HttpStatus.OK);
 	}
 
-	// retrieves and returns the fertilizer of given name.
+	/**
+	 * Retrieves the fertilizer of given name from database.
+	 * 
+	 * @param name
+	 * @return Returns the fertilizer of given name.
+	 */
 	@GetMapping("/fertilizerByName/{name}")
 	ResponseEntity<Fertilizer> getFertilizerByName(@Valid @PathVariable("name") String name) {
 		return new ResponseEntity<Fertilizer>(fertilizerService.getFertilizerByName(name), HttpStatus.OK);
 	}
 
-	// retrieves the list of all available fertilizers
+	/**
+	 * Retrieves the list of all available fertilizers from database.
+	 * 
+	 * @return Returns the list of fertilizers.
+	 */
 	@GetMapping("/allFertilizers")
 	ResponseEntity<List<Fertilizer>> getAllFertilizers() {
 		return new ResponseEntity<List<Fertilizer>>(fertilizerService.getAllFertilizers(), HttpStatus.OK);
 	}
 
-	// updates the price of existing fertilizer of given id
+	/**
+	 * Updates the price of existing fertilizer of given id.
+	 * 
+	 * @param userId
+	 * @param fertilizerId
+	 * @param price
+	 * @return Returns the updated fertilizer object from database.
+	 */
 	@PutMapping("/updatePrice/{fertilizerId}/{userId}")
 	ResponseEntity<Fertilizer> updatePriceById(@PathVariable("userId") int userId,
 			@PathVariable("fertilizerId") int fertilizerId, @Valid @RequestBody double price) {
@@ -65,14 +92,28 @@ public class FertilizerController {
 				HttpStatus.OK);
 	}
 
-	// updates the price of existing fertilizer of given name
+	/**
+	 * Updates the price of existing fertilizer of given name.
+	 * 
+	 * @param userId
+	 * @param name
+	 * @param Price
+	 * @return Returns the updated fertilizer object from database.
+	 */
 	@PutMapping("/updatePriceByName/{name}/{userId}")
 	ResponseEntity<Fertilizer> updatePriceByName(@PathVariable("userId") int userId,
 			@Valid @PathVariable("name") String name, @Valid @RequestBody double Price) {
 		return new ResponseEntity<Fertilizer>(fertilizerService.updatePriceByName(userId, name, Price), HttpStatus.OK);
 	}
 
-	// updates price and quantity of fertilizer of given id
+	/**
+	 * Updates price and quantity of fertilizer of given id.
+	 * 
+	 * @param userId
+	 * @param fertilizerId
+	 * @param fertilizerDto
+	 * @return Returns the updated fertilizer object from database.
+	 */
 	@PutMapping("/updatePriceAndQuantity/{fertilizerId}/{userId}")
 	ResponseEntity<Fertilizer> updatePriceAndQuantityById(@PathVariable("userId") int userId,
 			@PathVariable("fertilizerId") int fertilizerId, @Valid @RequestBody FertilizerDto fertilizerDto) {
@@ -80,7 +121,13 @@ public class FertilizerController {
 				fertilizerDto.getFertilizerPrice(), fertilizerDto.getFertilizerQuantity()), HttpStatus.OK);
 	}
 
-	// removes the fertilizer from database based on id.
+	/**
+	 * Deletes the fertilizer of given id from database.
+	 * 
+	 * @param userId
+	 * @param fertilizerId
+	 * @return Returns the deleted fertilizer.
+	 */
 	@DeleteMapping("/deleteById/{fertilizerId}/{userId}")
 	ResponseEntity<Fertilizer> removeFertilizerById(@PathVariable("userId") int userId,
 			@PathVariable("fertilizerId") int fertilizerId) {
@@ -88,7 +135,13 @@ public class FertilizerController {
 				HttpStatus.OK);
 	}
 
-	// removes the fertilizer of given name from database
+	/**
+	 * Deletes the fertilizer of given name from database.
+	 * 
+	 * @param userId
+	 * @param name
+	 * @return Returns the deleted fertilizer.
+	 */
 	@DeleteMapping("/deleteByName/{name}/{userId}")
 	ResponseEntity<Fertilizer> deleteFertilizerByName(@PathVariable("userId") int userId,
 			@Valid @PathVariable("name") String name) {

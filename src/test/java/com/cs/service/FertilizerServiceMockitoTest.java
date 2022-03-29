@@ -45,9 +45,12 @@ class FertilizerServiceMockitoTest {
 		MockitoAnnotations.openMocks(this);
 	}
 
+	/**
+	 * Mockito test case which tests the add fertilizer functionality of
+	 * FertilizerService class.
+	 */
 	@Test
-	void addFertilizerTest()
-	{
+	void addFertilizerTest() {
 		Fertilizer fertilizer = new Fertilizer(2, "cow manure", "www.google.com/cowManure", 250,
 				"It is an organic fertilizer and manure containing essential nutrients for healthy growth of plants.",
 				"1KG");
@@ -59,9 +62,14 @@ class FertilizerServiceMockitoTest {
 		endUser.setLogin(login);
 		Mockito.when(endUserRepo.findById(1)).thenReturn(Optional.of(endUser));
 		Mockito.when(fertilizerRepo.save(fertilizer)).thenReturn(fertilizer);
-		Fertilizer result = fertilizerService.addFertilizer(1,fertilizer);
-		assertEquals(result,fertilizer);
+		Fertilizer result = fertilizerService.addFertilizer(1, fertilizer);
+		assertEquals(result, fertilizer);
 	}
+
+	/**
+	 * Mockito test case which tests the get all fertilizers functionality of
+	 * FertilizerService class.
+	 */
 	@Test
 	void getAllFertilizersTest() {
 
@@ -89,6 +97,10 @@ class FertilizerServiceMockitoTest {
 
 	}
 
+	/**
+	 * Mockito test case that tests the get fertilizer by id functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	public void getFertilizerByIdTest() {
 		Fertilizer fertilizer = new Fertilizer(1, "compost", "www.google.com/compost", 49.99,
@@ -111,6 +123,10 @@ class FertilizerServiceMockitoTest {
 		assertEquals("1KG", fertilizer1.getFertilizerQuantity());
 	}
 
+	/**
+	 * Mockito test case that tests the get fertilizer by name functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	public void getFertilizerByNameTest() {
 		Fertilizer fertilizer = new Fertilizer(1, "compost", "www.google.com/compost", 49.99,
@@ -133,6 +149,10 @@ class FertilizerServiceMockitoTest {
 
 	}
 
+	/**
+	 * Mockito test case that tests the update fertilizer price by id functionality
+	 * of FertilizerService.
+	 */
 	@Test
 	public void updatePriceByIdTest() {
 		Fertilizer fertilizer = new Fertilizer(3, "Leaf mould", "www.google.com/leafMould", 189,
@@ -160,6 +180,10 @@ class FertilizerServiceMockitoTest {
 		assertEquals(200, fertilizer3.getFertilizerPrice());
 	}
 
+	/**
+	 * Mockito test case that tests the update fertilizer price by name
+	 * functionality of FertilizerService.
+	 */
 	@Test
 	public void updatePriceByNameTest() {
 		Fertilizer fertilizer = new Fertilizer(3, "Leaf mould", "www.google.com/leafMould", 189,
@@ -187,6 +211,38 @@ class FertilizerServiceMockitoTest {
 		assertEquals(200, fertilizer3.getFertilizerPrice());
 	}
 
+	/**
+	 * Mockito test case that tests the update price and quantity of fertilizer by
+	 * id functionality of FertilizerService.
+	 */
+	@Test
+	public void updatePriceAndQuantityByIdTest() {
+		Fertilizer fertilizer = new Fertilizer(3, "Leaf mould", "www.google.com/leafMould", 189,
+				"It is a form of compost exclusively made by the fungal & bacterial breakdown of dry leaves. Leaf mould is good quality humus.",
+				"1KG");
+		Fertilizer fertilizer2 = new Fertilizer(3, "Leaf mould", "www.google.com/leafMould", 349.99,
+				"It is a form of compost exclusively made by the fungal & bacterial breakdown of dry leaves. Leaf mould is good quality humus.",
+				"2KG");
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(23);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(fertilizerRepo.findById(3)).thenReturn(Optional.of(fertilizer));
+		Mockito.when(endUserRepo.findById(23)).thenReturn(Optional.of(endUser));
+
+		Mockito.when(fertilizerRepo.save(fertilizer)).thenReturn(fertilizer2);
+		Fertilizer fertilizer3 = fertilizerService.updatePriceAndQuantityById(23, 3, 349.99, "2KG");
+		assertEquals("Leaf mould", fertilizer3.getFertilizerName());
+		assertEquals(349.99, fertilizer3.getFertilizerPrice());
+		assertEquals("2KG", fertilizer3.getFertilizerQuantity());
+	}
+
+	/**
+	 * Mockito test case that tests the remove fertilizer by id functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	public void removeFertilizerByIdTest() {
 		Fertilizer fertilizer = new Fertilizer(3, "Leaf mould", "www.google.com/leafMould", 189,
@@ -205,6 +261,10 @@ class FertilizerServiceMockitoTest {
 		assertEquals(fertilizer, deletedFertilizer);
 	}
 
+	/**
+	 * Mockito test case that tests the remove fertilizer by name functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	public void removeFertilizerByNameTest() {
 		Fertilizer fertilizer = new Fertilizer(3, "Leaf mould", "www.google.com/leafMould", 189,

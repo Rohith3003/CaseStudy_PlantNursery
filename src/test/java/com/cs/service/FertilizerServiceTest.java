@@ -23,12 +23,21 @@ class FertilizerServiceTest {
 	@Autowired
 	IFertilizerService fertilizerService;
 
+	
+	/**
+	 * JUnit test case which tests the get all fertilizers functionality of
+	 * FertilizerService class.
+	 */
 	@Test
 	void getAllFertilizersTest() {
 		List<Fertilizer> fertilizers = fertilizerService.getAllFertilizers();
 		assertEquals(4, fertilizers.size());
 	}
 
+	/**
+	 * JUnit test case which tests the add fertilizer functionality of
+	 * FertilizerService class.
+	 */
 	@Test
 	@Disabled
 	void addFertilizer() {
@@ -53,6 +62,10 @@ class FertilizerServiceTest {
 				fertilizer1.getFertilizerDescription());
 	}
 
+	/**
+	 * JUnit test case that tests the get fertilizer by id functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	public void getFertilizerByIdTest() {
 		Fertilizer fertilizer = fertilizerService.getFertilizerById(1);
@@ -66,6 +79,10 @@ class FertilizerServiceTest {
 		assertEquals("1KG", fertilizer.getFertilizerQuantity());
 	}
 
+	/**
+	 * JUnit test case that tests the get fertilizer by name functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	@Disabled
 	public void getFertilizerByNameTest() {
@@ -80,6 +97,10 @@ class FertilizerServiceTest {
 		assertEquals("5KG", fertilizer.getFertilizerQuantity());
 	}
 
+	/**
+	 * JUnit test case that tests the update fertilizer price by id functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	@Disabled
 	public void updatePriceById() {
@@ -88,6 +109,10 @@ class FertilizerServiceTest {
 		assertEquals(89.99, fertilizer.getFertilizerPrice());
 	}
 
+	/**
+	 * JUnit test case that tests the update fertilizer price by name functionality
+	 * of FertilizerService.
+	 */
 	@Test
 	@Disabled
 	public void updatePriceByName() {
@@ -96,6 +121,10 @@ class FertilizerServiceTest {
 		assertEquals(299.99, fertilizer.getFertilizerPrice());
 	}
 
+	/**
+	 * JUnit test case that tests the update price and quantity of fertilizer by id
+	 * functionality of FertilizerService.
+	 */
 	@Test
 	@Disabled
 	public void updatePriceAndQuantityById() {
@@ -105,6 +134,10 @@ class FertilizerServiceTest {
 		assertEquals(5, fertilizer.getFertilizerId());
 	}
 
+	/**
+	 * JUnit test case that tests the remove fertilizer by id functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	@Disabled
 	public void removeFertilizerByIdTest() {
@@ -113,6 +146,10 @@ class FertilizerServiceTest {
 		assertEquals(fertilizer, deletedFertilizer);
 	}
 
+	/**
+	 * JUnit test case that tests the remove fertilizer by name functionality of
+	 * FertilizerService.
+	 */
 	@Test
 	@Disabled
 	public void removeFertilizerByName() {

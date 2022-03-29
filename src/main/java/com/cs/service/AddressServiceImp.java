@@ -24,11 +24,16 @@ public class AddressServiceImp implements IAddressService {
 
 	@Autowired
 	IAddressRepository addressRepo;
-	
+
 	@Autowired
 	IEndUserRepository endUserRepo;
 
-	// adds new address to database.
+	/**
+	 * Adds new address to user and persists it in database.
+	 * 
+	 * @param address
+	 * @return Returns the address object which is added to database.
+	 */
 	@Override
 	public Address addAddress(int userId, Address address) {
 		EndUser user = endUserRepo.getById(userId);
@@ -37,7 +42,13 @@ public class AddressServiceImp implements IAddressService {
 		return addressRepo.save(address);
 	}
 
-	// retrieves the address of given id from database
+	/**
+	 * Retrieves the address of given id from database
+	 * 
+	 * @param id
+	 * @return if the given id is present in database then returns corresponding
+	 *         address object else returns null.
+	 */
 	@Override
 	public Address getAddresById(int id) {
 
@@ -48,7 +59,11 @@ public class AddressServiceImp implements IAddressService {
 		return address.get();
 	}
 
-	// retrieves the list of all available addresses in database
+	/**
+	 * Retrieves the list of all available addresses in database.
+	 * 
+	 * @return returns the list of addresses from database.
+	 */
 	@Override
 	public List<Address> getAllAddresses() {
 		List<Address> addresses = addressRepo.findAll();
@@ -59,7 +74,13 @@ public class AddressServiceImp implements IAddressService {
 		return addresses;
 	}
 
-	// updates the existing address of given id in database.
+	/**
+	 * Updates the existing address of given id in database.
+	 * 
+	 * @param id      addressId
+	 * @param address updatedAddress
+	 * @return Returns the updated address object.
+	 */
 	@Override
 	public Address updateAddressById(int id, Address address) {
 
@@ -76,7 +97,12 @@ public class AddressServiceImp implements IAddressService {
 		return addressRepo.save(oldAddress.get());
 	}
 
-	// deletes address of given id from database.
+	/**
+	 * Deletes the address of given id from database.
+	 * 
+	 * @param id
+	 * @return Returns the address object which is deleted from database.
+	 */
 	@Override
 	public Address deleteAddressById(int id) {
 		Optional<Address> address = addressRepo.findById(id);

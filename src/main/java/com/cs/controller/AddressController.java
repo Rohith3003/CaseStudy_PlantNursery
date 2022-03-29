@@ -17,8 +17,8 @@ import com.cs.bean.Address;
 import com.cs.service.IAddressService;
 
 /**
- * This class is used as controller to add, delete, update and retrieve
- * Address to and from database
+ * This class is used as controller to add, delete, update and retrieve Address
+ * to and from database
  * 
  * @author Rohith(Employee id: 46191986)
  *
@@ -31,41 +31,18 @@ public class AddressController {
 	IAddressService addressService;
 
 	/**
-	 * Adds new address to database.
+	 * Adds new address to user and persists it in database.
 	 * 
 	 * @param address
-	 * @return returns the address object which is added to database
+	 * @return Returns the address object which is added to database.
 	 */
 	@PostMapping("/addAddress/{userId}")
 	ResponseEntity<Address> addAddress(@PathVariable("userId") int userId, @RequestBody Address address) {
-		return new ResponseEntity<Address>(addressService.addAddress(userId,address), HttpStatus.OK);
+		return new ResponseEntity<Address>(addressService.addAddress(userId, address), HttpStatus.OK);
 	}
 
 	/**
-	 * Deletes the address of given id from database.
-	 * 
-	 * @param id
-	 * @return returns the address object which is deleted from database
-	 */
-	@DeleteMapping("/deleteAddress/{id}")
-	ResponseEntity<Address> deleteAddressById(@PathVariable("id") int id) {
-		return new ResponseEntity<Address>(addressService.deleteAddressById(id), HttpStatus.OK);
-	}
-
-	/**
-	 * Updates the existing address of given id in database.
-	 * 
-	 * @param id      addressId
-	 * @param address updatedAddress
-	 * @return returns the updated address object
-	 */
-	@PutMapping("/updateAddress/{id}")
-	ResponseEntity<Address> updateAddressById(@PathVariable("id") int id, @RequestBody Address address) {
-		return new ResponseEntity<Address>(addressService.updateAddressById(id, address), HttpStatus.OK);
-	}
-
-	/**
-	 * Retrieves the address of given id from database
+	 * Retrieves the address of given id from database.
 	 * 
 	 * @param id
 	 * @return if the given id is present in database then returns corresponding
@@ -85,4 +62,28 @@ public class AddressController {
 	ResponseEntity<List<Address>> getAllAddresses() {
 		return new ResponseEntity<List<Address>>(addressService.getAllAddresses(), HttpStatus.OK);
 	}
+
+	/**
+	 * Updates the existing address of given id in database.
+	 * 
+	 * @param id      addressId
+	 * @param address updatedAddress
+	 * @return Returns the updated address object.
+	 */
+	@PutMapping("/updateAddress/{id}")
+	ResponseEntity<Address> updateAddressById(@PathVariable("id") int id, @RequestBody Address address) {
+		return new ResponseEntity<Address>(addressService.updateAddressById(id, address), HttpStatus.OK);
+	}
+
+	/**
+	 * Deletes the address of given id from database.
+	 * 
+	 * @param id
+	 * @return Returns the address object which is deleted from database.
+	 */
+	@DeleteMapping("/deleteAddress/{id}")
+	ResponseEntity<Address> deleteAddressById(@PathVariable("id") int id) {
+		return new ResponseEntity<Address>(addressService.deleteAddressById(id), HttpStatus.OK);
+	}
+
 }
