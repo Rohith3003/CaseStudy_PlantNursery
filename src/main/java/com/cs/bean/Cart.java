@@ -12,7 +12,11 @@ import javax.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * This class is for the Cart Entity
+ * @author Mayank Kumar(Employee ID: 46191925)
+ *
+ */
 @Entity
 @Data
 @AllArgsConstructor
