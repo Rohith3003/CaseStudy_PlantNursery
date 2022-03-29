@@ -33,7 +33,7 @@ class AddressServiceMockitoTest {
 
 	@MockBean
 	IAddressRepository addressRepo;
-	
+
 	@MockBean
 	IEndUserRepository endUserRepo;
 
@@ -42,18 +42,26 @@ class AddressServiceMockitoTest {
 		MockitoAnnotations.openMocks(this);
 	}
 
+	/**
+	 * Mockito test case which tests the addAddress functionaliy of AddressService
+	 * class.
+	 */
 	@Test
 	void addAddressTest() {
 		Address address = new Address(303, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
 				"India");
-		EndUser endUser  = new EndUser();
+		EndUser endUser = new EndUser();
 		endUser.setId(8);
 		Mockito.when(endUserRepo.getById(8)).thenReturn(endUser);
 		Mockito.when(addressRepo.save(address)).thenReturn(address);
-		Address address1 = addressService.addAddress(8,address);
+		Address address1 = addressService.addAddress(8, address);
 		assertEquals(address, address1);
 	}
 
+	/**
+	 * Mockito test case which tests the retrieving address by id functionality of
+	 * AddressService class.
+	 */
 	@Test
 	void getAddressByIdTest() {
 
@@ -64,6 +72,10 @@ class AddressServiceMockitoTest {
 		assertEquals(address, returnedAddress);
 	}
 
+	/**
+	 * Mockito test case which tests getting all addresses list functionality of
+	 * AddressService class.
+	 */
 	@Test
 	void getAllAddressesTest() {
 		Address address1 = new Address(28, 303, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
@@ -79,6 +91,10 @@ class AddressServiceMockitoTest {
 
 	}
 
+	/**
+	 * Mockito test case which tests updating address by id functionality
+	 * ofAddressService class.
+	 */
 	@Test
 	void updateAddresByIdTest() {
 		Address address = new Address(28, 303, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
@@ -93,6 +109,10 @@ class AddressServiceMockitoTest {
 		assertEquals(address1, updatedAddress);
 	}
 
+	/**
+	 * Mockito test case which tests delete address by id functionality of
+	 * AddressService class.
+	 */
 	@Test
 	void deleteAddressByIdTest() {
 		Address address = new Address(28, 303, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,

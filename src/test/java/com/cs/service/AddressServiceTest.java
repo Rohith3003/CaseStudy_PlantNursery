@@ -22,15 +22,23 @@ class AddressServiceTest {
 	@Autowired
 	IAddressService addressService;
 
+	/**
+	 * JUnit test case which tests the addAddress functionaliy of AddressService
+	 * class.
+	 */
 	@Test
 	@Disabled
 	void addAddressTest() {
 		Address address = new Address(303, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
 				"India");
-		Address address1 = addressService.addAddress(8,address);
+		Address address1 = addressService.addAddress(8, address);
 		assertEquals(address, address1);
 	}
 
+	/**
+	 * JUnit test case which tests the retrieving address by id functionality of
+	 * AddressService class.
+	 */
 	@Test
 	@Disabled
 	void getAddressByIdTest() {
@@ -45,12 +53,20 @@ class AddressServiceTest {
 		assertEquals(500079, address.getPincode());
 	}
 
+	/**
+	 * JUnit test case which tests getting all addresses list functionality of
+	 * AddressService class.
+	 */
 	@Test
 	void getAllAddressesTest() {
 		List<Address> addresses = addressService.getAllAddresses();
 		assertEquals(4, addresses.size());
 	}
 
+	/**
+	 * JUnit test case which tests updating address by id functionality of
+	 * AddressService class.
+	 */
 	@Test
 	void updateAddressByIdTest() {
 		Address address = new Address(16, 305, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
@@ -59,6 +75,10 @@ class AddressServiceTest {
 		assertEquals(address, updatedAddress);
 	}
 
+	/**
+	 * JUnit test case which tests delete address by id functionality of
+	 * AddressService class.
+	 */
 	@Test
 	@Disabled
 	void deleteAddressbyIdTest() {

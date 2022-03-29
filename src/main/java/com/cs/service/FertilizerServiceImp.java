@@ -28,7 +28,13 @@ public class FertilizerServiceImp implements IFertilizerService {
 	@Autowired
 	IEndUserRepository endUserRepo;
 
-	// adds new fertilizer into database
+	/**
+	 * Adds new fertilizer to the database.
+	 * 
+	 * @param userId
+	 * @param fertilizer
+	 * @return Returns the fertilizer object which is persisted in database.
+	 */
 	@Override
 	public Fertilizer addFertilizer(int userId, Fertilizer fertilizer) {
 
@@ -44,7 +50,12 @@ public class FertilizerServiceImp implements IFertilizerService {
 		}
 	}
 
-	// retrieves and returns the fertilizer from database based on given id.
+	/**
+	 * Retrieves the fertilizer of given id from database.
+	 * 
+	 * @param id
+	 * @return Returns the fertilizer of given id.
+	 */
 	@Override
 	public Fertilizer getFertilizerById(int id) {
 
@@ -55,7 +66,12 @@ public class FertilizerServiceImp implements IFertilizerService {
 		return fertilizer.get();
 	}
 
-	// retrieves and returns the fertilizer of given name.
+	/**
+	 * Retrieves the fertilizer of given name from database.
+	 * 
+	 * @param name
+	 * @return Returns the fertilizer of given name.
+	 */
 	@Override
 	public Fertilizer getFertilizerByName(String name) {
 
@@ -66,14 +82,25 @@ public class FertilizerServiceImp implements IFertilizerService {
 		return fertilizer;
 	}
 
-	// retrieves the list of all available fertilizers
+	/**
+	 * Retrieves the list of all available fertilizers from database.
+	 * 
+	 * @return Returns the list of fertilizers.
+	 */
 	@Override
 	public List<Fertilizer> getAllFertilizers() {
 
 		return fertilizerRepo.findAll();
 	}
 
-	/// updates the price of existing fertilizer of given id
+	/**
+	 * Updates the price of existing fertilizer of given id.
+	 * 
+	 * @param userId
+	 * @param fertilizerId
+	 * @param price
+	 * @return Returns the updated fertilizer object from database.
+	 */
 	@Override
 	public Fertilizer updatePriceById(int userId, int fertilizerId, double price) {
 
@@ -93,7 +120,14 @@ public class FertilizerServiceImp implements IFertilizerService {
 		return fertilizerRepo.save(fertilizer.get());
 	}
 
-	// updates the price of existing fertilizer of given name
+	/**
+	 * Updates the price of existing fertilizer of given name.
+	 * 
+	 * @param userId
+	 * @param name
+	 * @param Price
+	 * @return Returns the updated fertilizer object from database.
+	 */
 	@Override
 	public Fertilizer updatePriceByName(int userId, String name, double price) {
 
@@ -112,10 +146,17 @@ public class FertilizerServiceImp implements IFertilizerService {
 		return fertilizerRepo.save(fertilizer);
 	}
 
-	// updates price and quantity of fertilizer of given id
+	/**
+	 * Updates price and quantity of fertilizer of given id.
+	 * 
+	 * @param userId
+	 * @param fertilizerId
+	 * @param fertilizerDto
+	 * @return Returns the updated fertilizer object from database.
+	 */
 	@Override
 	public Fertilizer updatePriceAndQuantityById(int userId, int fertilizerId, double price, String quantity) {
-		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(userId);
+		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
 		if (endUser.isEmpty()) {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
@@ -123,7 +164,7 @@ public class FertilizerServiceImp implements IFertilizerService {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
 		} else if (!endUser.get().getLogin().isLogin()) {
 			throw new UserNotFoundException("first login to add fertilizer to the database");
-		} else if (fertilizer.isEmpty()) {
+		} else if (!fertilizer.isPresent()) {
 			throw new FertilizerNotFoundException("Fertilizer with the given id: " + fertilizerId + " is not found");
 		}
 		fertilizer.get().setFertilizerPrice(price);
@@ -131,7 +172,13 @@ public class FertilizerServiceImp implements IFertilizerService {
 		return fertilizerRepo.save(fertilizer.get());
 	}
 
-	// deletes fertilizer from database based on id.
+	/**
+	 * Deletes the fertilizer of given id from database.
+	 * 
+	 * @param userId
+	 * @param fertilizerId
+	 * @return Returns the deleted fertilizer.
+	 */
 	@Override
 	public Fertilizer removeFertilizerById(int userId, int fertilizerId) {
 		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
@@ -149,7 +196,13 @@ public class FertilizerServiceImp implements IFertilizerService {
 		return fertilizer.get();
 	}
 
-	// removes the fertilizer of given name from database
+	/**
+	 * Deletes the fertilizer of given name from database.
+	 * 
+	 * @param userId
+	 * @param name
+	 * @return Returns the deleted fertilizer.
+	 */
 	@Override
 	public Fertilizer removeFertilizerByName(int userId, String name) {
 

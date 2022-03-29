@@ -39,7 +39,7 @@ public class CartServiceTest
 		assertEquals(before.getGardenDecor().size()-1,result.getGardenDecor().size());
 	}
 	
-	/*@Test
+	@Test
 	@Disabled
 	void addSeedToCart()
 	{
@@ -109,5 +109,5 @@ public class CartServiceTest
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.removePlanterFromCart(10,5);
 		assertEquals(before.getPlanter().size()-1,result.getPlanter().size());
-	}*/
+	}
 }

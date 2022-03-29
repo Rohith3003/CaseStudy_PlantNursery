@@ -16,8 +16,20 @@ import com.cs.bean.Fertilizer;
 @Repository
 public interface IFertilizerRepository extends JpaRepository<Fertilizer, Integer> {
 
+	/**
+	 * Retrieves the fertilizer of given name from database.
+	 * 
+	 * @param name
+	 * @return Returns the fertilizer of given name.
+	 */
 	public Fertilizer findByFertilizerName(String name);
 
+	/**
+	 * Retrieves the fertilizer of given name from database.
+	 * 
+	 * @param name
+	 * @return returns the fertilizer of given name.
+	 */
 	@Query(value = "delete from fertilizer where name=:name", nativeQuery = true)
 	public void deleteByName(@Param("name") String name);
 
