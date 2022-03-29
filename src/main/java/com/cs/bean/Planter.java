@@ -27,6 +27,7 @@ public class Planter {
 	
 	@NotEmpty(message = "Planter name can't be empty")
 	@Size(min=5,message = "Planter name should be min 5 character")
+	@Pattern(regexp = "[a-zA-Z[\\s]]{5,50}",message = "Planter name should not have any digit or special character")
 	private String name; //Signifies more details of the product like color,size,model etc. Eg. Brown M plain
 	
 	private Type category; //Belongs to one of the pre-defined Enum Type
