@@ -328,6 +328,7 @@ public class CartServiceImpl implements ICartService
 		}
 		cost = cost - planter.get().getPrice();
 		cart.get().setCartCost(cost);
+		cartRepo.save(cart.get());
 		return cart.get();
 	}
 
