@@ -9,7 +9,6 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -20,6 +19,8 @@ import com.cs.bean.Login;
 import com.cs.dto.Register;
 import com.cs.dto.RegisterOutputDto;
 import com.cs.exception.CustomerNotFoundException;
+import com.cs.exception.DuplicateEmailIdException;
+import com.cs.exception.DuplicateMobileNumbersException;
 import com.cs.exception.PasswordDoNotMatchException;
 import com.cs.repository.IAddressRepository;
 import com.cs.repository.ICartRepository;
@@ -40,53 +41,46 @@ public class EndUserServiceImp implements IEndUserService {
 	IAddressRepository addressRepository;
 
 	@Override
-	public RegisterOutputDto addCustomer(Register register) {		
-		try {
-			EndUser newCustomer = new EndUser();
-			newCustomer.setFullName(register.getName());
-			newCustomer.setMobileNumber(register.getMobileNumber());
-			if (!register.getPassword().equals(register.getConfirmPassword())) {
-				throw new PasswordDoNotMatchException("Confirm password and Password donot match exception");
-			}
-			newCustomer.setAdmin(register.isAdmin());
-			Login login = new Login();
-			login.setEmail(register.getEmailId());
-			login.setPassword(register.getPassword());
-			newCustomer.setLogin(login);
-			Cart cart = new Cart();
-			cartRepository.save(cart);
-			newCustomer.setCart(cart);
-			Address address = new Address();
-			addressRepository.save(address);
-			newCustomer.setAddress(address);			
-			endUserRepository.save(newCustomer);			
-			RegisterOutputDto registerDto = new RegisterOutputDto();
-			registerDto.setEmailId(newCustomer.getLogin().getEmail());
-			registerDto.setName(newCustomer.getFullName());
-			registerDto.setMobileNumber(newCustomer.getMobileNumber());
-			registerDto.setCartId(newCustomer.getCart().getCartId());
-			registerDto.setAddress(newCustomer.getAddress());
-			return registerDto;
-		} catch (DataIntegrityViolationException exception) {
-			EndUser customer = endUserRepository.getByMobileNumber(register.getMobileNumber());
-			if (customer != null) {
-				throw new DataIntegrityViolationException(
-						"Customer with the given phone number already exists, try registering using other mobile number");
-			} else {
-				throw new DataIntegrityViolationException(
-						"Customer with the given email id already exists, try registering using other email id");
-
-			}
-			
-		} catch (InvalidDataAccessResourceUsageException exception) {
-			throw new InvalidDataAccessResourceUsageException("Relation \'customer\' does not exist");
+	public RegisterOutputDto addCustomer(Register register) {
+		EndUser newCustomer = new EndUser();
+		newCustomer.setFullName(register.getName());
+		newCustomer.setMobileNumber(register.getMobileNumber());
+		EndUser customer = endUserRepository.getByMobileNumber(register.getMobileNumber());
+		if (customer != null) {
+			throw new DuplicateMobileNumbersException(
+					"Customer with the given phone number already exists, try registering using other mobile number");
 		}
-
+		customer = null;
+		if (!register.getPassword().equals(register.getConfirmPassword())) {
+			throw new PasswordDoNotMatchException("Confirm password and Password donot match exception");
+		}
+		newCustomer.setAdmin(register.isAdmin());
+		customer = endUserRepository.getByEmailId(register.getEmailId());
+		if (customer != null) {
+			throw new DuplicateEmailIdException(
+					"Customer with the given email Id already exists, try registering using other email id or login though this mail Id");
+		}
+		Login login = new Login();
+		login.setEmail(register.getEmailId());
+		login.setPassword(register.getPassword());
+		newCustomer.setLogin(login);
+		Cart cart = new Cart();
+		newCustomer.setCart(cart);
+		Address address = new Address();
+		newCustomer.setAddress(address);
+		endUserRepository.save(newCustomer);
+		RegisterOutputDto registerDto = new RegisterOutputDto();
+		registerDto.setEmailId(newCustomer.getLogin().getEmail());
+		registerDto.setName(newCustomer.getFullName());
+		registerDto.setMobileNumber(newCustomer.getMobileNumber());
+		registerDto.setCartId(newCustomer.getCart().getCartId());
+		registerDto.setAddress(newCustomer.getAddress());
+		return registerDto;
 	}
 
 	@Override
 	public List<RegisterOutputDto> getAllCustomerDto() {
-		
+
 		List<EndUser> customers = endUserRepository.findAll();
 		List<RegisterOutputDto> registerOuput = new ArrayList<>();
 
@@ -104,7 +98,7 @@ public class EndUserServiceImp implements IEndUserService {
 
 	@Override
 	public List<EndUser> getAllCustomer() {
-		
+
 		return endUserRepository.findAll();
 	}
 
@@ -170,7 +164,7 @@ public class EndUserServiceImp implements IEndUserService {
 
 	@Override
 	public RegisterOutputDto getCustomerByMobileNumber(String mobileNumber) {
-		
+
 		EndUser customer = endUserRepository.getByMobileNumber(mobileNumber);
 		if (customer == null) {
 			throw new CustomerNotFoundException(
@@ -222,7 +216,7 @@ public class EndUserServiceImp implements IEndUserService {
 
 	@Override
 	public RegisterOutputDto deleteCustomerById(Integer id) {
-		
+
 		Optional<EndUser> opt = endUserRepository.findById(id);
 
 		if (!opt.isPresent()) {
@@ -241,7 +235,7 @@ public class EndUserServiceImp implements IEndUserService {
 
 	@Override
 	public RegisterOutputDto deleteCustomerByEmailId(String emailId) {
-		
+
 		EndUser customer = endUserRepository.getByEmailId(emailId);
 		if (customer == null) {
 			throw new CustomerNotFoundException("Customer not found with given reference Email Id : " + emailId);
@@ -257,7 +251,7 @@ public class EndUserServiceImp implements IEndUserService {
 	}
 
 	@Override
-	public RegisterOutputDto updateCustomerAddress(Integer customerId,Address address) {
+	public RegisterOutputDto updateCustomerAddress(Integer customerId, Address address) {
 		Optional<EndUser> opt = endUserRepository.findById(customerId);
 		if (!opt.isPresent()) {
 			throw new CustomerNotFoundException("Customer not found with given reference id : " + customerId);
@@ -271,14 +265,14 @@ public class EndUserServiceImp implements IEndUserService {
 		register.setAddress(address);
 		customer.getAddress().setBuildingName(address.getBuildingName());
 		customer.getAddress().setCity(address.getCity());
-		customer.getAddress().setColony(address.getColony()); 
+		customer.getAddress().setColony(address.getColony());
 		customer.getAddress().setCountry(address.getCountry());
 		customer.getAddress().setFlatNum(address.getFlatNum());
 		customer.getAddress().setPincode(address.getPincode());
 		customer.getAddress().setState(address.getState());
 		endUserRepository.save(customer);
 		return register;
-		//return null;
+		// return null;
 	}
 
 	@Override
@@ -291,18 +285,6 @@ public class EndUserServiceImp implements IEndUserService {
 		return customer.getCart().getCartId();
 	}
 
-	
-	@Override
-	public Cart getCustomersCartProducts(Integer customerId) {
-		Optional<EndUser> opt = endUserRepository.findById(customerId);
-		if (!opt.isPresent()) {
-			throw new CustomerNotFoundException("Customer not found with given reference id : " + customerId);
-		}
-		//EndUser customer = endUserRepository.getById(customerId);
-		//return customer.getCart().get();
-		return null;
-	}
-
 	@Override
 	public String updatePassword(String email, String oldPassword,
 			@NotEmpty(message = "Field must not be Empty") @Pattern(regexp = "^(([a-z])|([A-Z])|([!@#$&*])|([0-9])){8,12}$", message = "password must contain atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit and should be atleast 8 letters") String newPassword,
@@ -311,11 +293,11 @@ public class EndUserServiceImp implements IEndUserService {
 		if (customer == null) {
 			throw new CustomerNotFoundException("Customer not found with given reference Email Id : " + email);
 		}
-		
+
 		if (!oldPassword.equals(customer.getLogin().getPassword())) {
-				throw new PasswordDoNotMatchException("Password donot match");
-			}
-		if(!newPassword.equals(confirmNewPassword)) {
+			throw new PasswordDoNotMatchException("Password donot match");
+		}
+		if (!newPassword.equals(confirmNewPassword)) {
 			throw new PasswordDoNotMatchException("Confirm password and Password donot match exception");
 		}
 		customer.getLogin().setPassword(newPassword);
@@ -323,7 +305,6 @@ public class EndUserServiceImp implements IEndUserService {
 		return "Password is updated successfully";
 	}
 
-	
 	@Override
 	public double getCustomerCartPrice(Integer id) {
 		Optional<EndUser> opt = endUserRepository.findById(id);
@@ -332,9 +313,9 @@ public class EndUserServiceImp implements IEndUserService {
 			throw new CustomerNotFoundException("Customer not found with given reference id : " + id);
 		}
 		EndUser customer = endUserRepository.getById(id);
-		
+
 		customer.getCart().getCartCost();
 		return 0;
 	}
-	
+
 }

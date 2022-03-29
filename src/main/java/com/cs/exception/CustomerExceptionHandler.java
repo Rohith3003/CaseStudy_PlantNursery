@@ -13,65 +13,81 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cs.bean.UserErrorResponse;
 
-
-
 @ControllerAdvice
 public class CustomerExceptionHandler {
-	
+
 	@ExceptionHandler
 	public ResponseEntity<UserErrorResponse> handleException(CustomerNotFoundException exception) {
-UserErrorResponse error = new UserErrorResponse();
-		
+		UserErrorResponse error = new UserErrorResponse();
+
 		error.setStatus(HttpStatus.NOT_FOUND.value());
 		error.setMessage(exception.getMessage());
 		error.setTimeStamp(LocalDateTime.now());
-		
+
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<UserErrorResponse> handleException(DataIntegrityViolationException exception) {
 		UserErrorResponse error = new UserErrorResponse();
 		error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		error.setMessage(exception.getMessage());
 		error.setTimeStamp(LocalDateTime.now());
-		
+
 		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
-		
+
 	}
-	
-	
+
 	@ExceptionHandler
 	public ResponseEntity<UserErrorResponse> handleException(InvalidDataAccessResourceUsageException exception) {
 		UserErrorResponse error = new UserErrorResponse();
 		error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		error.setMessage(exception.getMessage());
 		error.setTimeStamp(LocalDateTime.now());
-		
+
 		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
+
 	@ExceptionHandler
 	public ResponseEntity<UserErrorResponse> handleException(PasswordDoNotMatchException exception) {
-			UserErrorResponse error = new UserErrorResponse();
-		
+		UserErrorResponse error = new UserErrorResponse();
+
 		error.setStatus(HttpStatus.NOT_FOUND.value());
 		error.setMessage(exception.getMessage());
 		error.setTimeStamp(LocalDateTime.now());
-		
+
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler
-	public ResponseEntity<UserErrorResponse> handleException(ConstraintViolationException exception){
-    UserErrorResponse error = new UserErrorResponse();
-		
+	public ResponseEntity<UserErrorResponse> handleException(ConstraintViolationException exception) {
+		UserErrorResponse error = new UserErrorResponse();
+
 		error.setStatus(HttpStatus.NOT_FOUND.value());
 		error.setMessage(exception.getMessage());
 		error.setTimeStamp(LocalDateTime.now());
-		
+
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
-	
-	
+
+	@ExceptionHandler
+	public ResponseEntity<UserErrorResponse> handleException(DuplicateEmailIdException exception) {
+		UserErrorResponse error = new UserErrorResponse();
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setMessage(exception.getMessage());
+		error.setTimeStamp(LocalDateTime.now());
+
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler
+	public ResponseEntity<UserErrorResponse> handleException(DuplicateMobileNumbersException exception) {
+		UserErrorResponse error = new UserErrorResponse();
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setMessage(exception.getMessage());
+		error.setTimeStamp(LocalDateTime.now());
+
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+
 }
