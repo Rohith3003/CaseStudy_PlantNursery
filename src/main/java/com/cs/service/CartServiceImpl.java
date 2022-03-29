@@ -22,7 +22,12 @@ import com.cs.repository.IGardenDecorRepository;
 import com.cs.repository.IPlantRepository;
 import com.cs.repository.IPlanterRepository;
 import com.cs.repository.ISeedRepository;
-
+/**
+ * This Class is used to define the services provided to
+ * CartController so that we can view, add to cart and remove from cart into or from database
+ * @author Mayank Kumar(Employee ID: 46191925)
+ *
+ */
 @Service
 public class CartServiceImpl implements ICartService
 {
@@ -39,7 +44,11 @@ public class CartServiceImpl implements ICartService
 	@Autowired
 	IFertilizerRepository fertilizerRepo;
 	
-	// view the cart
+	/**
+	 * view the cart of the given id
+	 * @param cartId
+	 * @return cart of given id
+	 */
 	@Override
 	public Cart viewCart(int cartId) 
 	{
@@ -51,7 +60,12 @@ public class CartServiceImpl implements ICartService
 		return cart.get();
 	}
 	
-	// add garden decor to cart
+	/**
+	 * add gardendecor of the given id to the cart
+	 * @param cartId
+	 * @param gardenDecorId
+	 * @return cart with the added gardendecor
+	 */
 	@Override
 	public Cart addGardenDecorToCart(int cartId, int gardenDecorId) 
 	{
@@ -78,7 +92,12 @@ public class CartServiceImpl implements ICartService
 		return cart.get();
 	}
 
-	// remove garden decor from cart
+	/**
+	 * remove gardendecor of the given id from the cart
+	 * @param cartId
+	 * @param gardenDecorId
+	 * @return cart with the removed gardendecor
+	 */
 	@Override
 	public Cart removeGardenDecorFromCart(int cartId, int gardenDecorId) 
 	{
@@ -106,7 +125,12 @@ public class CartServiceImpl implements ICartService
 	}
 
 	
- 	// add seed to cart
+ 	/**
+	 * add seed of the given id to the cart
+	 * @param cartId
+	 * @param seedId
+	 * @return cart with the added seed
+	 */
 	@Override
 	public Cart addSeedToCart(int cartId, int seedId) 
 	{
@@ -133,7 +157,12 @@ public class CartServiceImpl implements ICartService
 		return cart.get();
 	}
 	
-	// remove seed from cart
+	/**
+	 * remove seed of the given id from the cart
+	 * @param cartId
+	 * @param seedId
+	 * @return cart with the removed seed
+	 */
 	@Override
 	public Cart removeSeedFromCart(int cartId, int seedId) 
 	{
@@ -160,7 +189,12 @@ public class CartServiceImpl implements ICartService
 		return cart.get();
 	}
 
-	// add plant to cart
+	/**
+	 * add plant of the given id to the cart
+	 * @param cartId
+	 * @param plantId
+	 * @return cart with the added plant
+	 */
 	@Override
 	public Cart addPlantToCart(int cartId, int plantId) 
 	{
@@ -187,7 +221,12 @@ public class CartServiceImpl implements ICartService
 		return cart.get();
 	}
 
-	// remove plant from cart
+	/**
+	 * remove plant of the given id from the cart
+	 * @param cartId
+	 * @param plantId
+	 * @return cart with the removed plant
+	 */
 	@Override
 	public Cart removePlantFromCart(int cartId, int plantId) 
 	{
@@ -215,10 +254,10 @@ public class CartServiceImpl implements ICartService
 	}
 
 	/**
-	 * Adds the fertilizer of given id to the customer cart of given id.
+	 * add fertlizer of the given id to the cart
 	 * @param cartId
 	 * @param fertilizerId
-	 * @return returns the updated cart object.
+	 * @return cart with the added fertilizer
 	 */
 	@Override
 	public Cart addFertilizerToCart(int cartId, int fertilizerId) 
@@ -247,10 +286,10 @@ public class CartServiceImpl implements ICartService
 	}
 
 	/**
-	 * Removes the fertilizer of given id from the customer cart of given id.
+	 * remove fertlizer of the given id from the cart
 	 * @param cartId
 	 * @param fertilizerId
-	 * @return returns the updated cart object.
+	 * @return cart with the removed fertilizer
 	 */
 	@Override
 	public Cart removeFertilizerFromCart(int cartId, int fertilizerId) 
@@ -278,7 +317,12 @@ public class CartServiceImpl implements ICartService
 		return cart.get();
 	}
 
-	// add planter to cart
+	/**
+	 * add planter of the given id to the cart
+	 * @param cartId
+	 * @param planterId
+	 * @return cart with the added planter
+	 */
 	@Override
 	public Cart addPlanterToCart(int cartId, int planterId) 
 	{
@@ -305,7 +349,12 @@ public class CartServiceImpl implements ICartService
 		return cart.get();
 	}
 
-	// remove planter from cart
+	/**
+	 * remove planter of the given id from the cart
+	 * @param cartId
+	 * @param planterId
+	 * @return cart with the removed planter
+	 */
 	@Override
 	public Cart removePlanterFromCart(int cartId, int planterId) 
 	{
