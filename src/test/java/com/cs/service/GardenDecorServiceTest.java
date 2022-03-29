@@ -7,7 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.cs.bean.GardenDecor;
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+* This class provides basic JUnit test cases for GardenDecorService class.
+* 
+* @author Mayank Kumar(Employee ID: 46191925)
+*
+*/
 @SpringBootTest
 public class GardenDecorServiceTest 
 {
