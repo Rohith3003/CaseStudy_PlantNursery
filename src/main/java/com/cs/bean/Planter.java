@@ -3,6 +3,7 @@ package com.cs.bean;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -10,10 +11,13 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
 
 import lombok.Data;
-
+/**
+ * Represents Planter entity, contains all the attributes along with validations.
+ */
 @Entity
 @Data
 public class Planter {
+	
 	@Id
 	@GeneratedValue
 	private int planterId;// Auto generated unique value 
@@ -32,5 +36,6 @@ public class Planter {
 	private String description;//Description of the product
 	
 	@Min(100)
+	@Max(10000)
 	private float price;//Price of the planter
 }
