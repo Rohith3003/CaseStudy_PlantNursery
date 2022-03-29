@@ -1,5 +1,6 @@
 package com.cs.exception;
 
+@SuppressWarnings("serial")
 public class SeedNotFoundException extends RuntimeException{
 	public SeedNotFoundException()
 	{

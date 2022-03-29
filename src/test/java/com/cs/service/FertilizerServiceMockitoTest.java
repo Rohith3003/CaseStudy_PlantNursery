@@ -15,7 +15,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.cs.bean.EndUser;
 import com.cs.bean.Fertilizer;
+import com.cs.bean.GardenDecor;
+import com.cs.bean.Login;
+import com.cs.repository.IEndUserRepository;
 import com.cs.repository.IFertilizerRepository;
 
 /**
@@ -33,11 +37,31 @@ class FertilizerServiceMockitoTest {
 	@MockBean
 	IFertilizerRepository fertilizerRepo;
 
+	@MockBean
+	IEndUserRepository endUserRepo;
+
 	@BeforeEach
 	void init() {
 		MockitoAnnotations.openMocks(this);
 	}
 
+	@Test
+	void addFertilizerTest()
+	{
+		Fertilizer fertilizer = new Fertilizer(2, "cow manure", "www.google.com/cowManure", 250,
+				"It is an organic fertilizer and manure containing essential nutrients for healthy growth of plants.",
+				"1KG");
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(1);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(1)).thenReturn(Optional.of(endUser));
+		Mockito.when(fertilizerRepo.save(fertilizer)).thenReturn(fertilizer);
+		Fertilizer result = fertilizerService.addFertilizer(1,fertilizer);
+		assertEquals(result,fertilizer);
+	}
 	@Test
 	void getAllFertilizersTest() {
 
@@ -118,6 +142,13 @@ class FertilizerServiceMockitoTest {
 				"It is a form of compost exclusively made by the fungal & bacterial breakdown of dry leaves. Leaf mould is good quality humus.",
 				"1KG");
 
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(23);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(23)).thenReturn(Optional.of(endUser));
 		Mockito.when(fertilizerRepo.findById(3)).thenReturn(Optional.of(fertilizer));
 		Fertilizer fertilizer1 = fertilizerService.getFertilizerById(3);
 		assertEquals(3, fertilizer1.getFertilizerId());
@@ -138,6 +169,13 @@ class FertilizerServiceMockitoTest {
 				"It is a form of compost exclusively made by the fungal & bacterial breakdown of dry leaves. Leaf mould is good quality humus.",
 				"1KG");
 
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(23);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(23)).thenReturn(Optional.of(endUser));
 		Mockito.when(fertilizerRepo.findByFertilizerName("Leaf mould")).thenReturn(fertilizer);
 		Fertilizer fertilizer1 = fertilizerService.getFertilizerByName("Leaf mould");
 		assertEquals("Leaf mould", fertilizer1.getFertilizerName());
@@ -154,6 +192,13 @@ class FertilizerServiceMockitoTest {
 		Fertilizer fertilizer = new Fertilizer(3, "Leaf mould", "www.google.com/leafMould", 189,
 				"It is a form of compost exclusively made by the fungal & bacterial breakdown of dry leaves. Leaf mould is good quality humus.",
 				"1KG");
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(1);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(23)).thenReturn(Optional.of(endUser));
 		Mockito.when(fertilizerRepo.findById(3)).thenReturn(Optional.of(fertilizer));
 
 		Fertilizer deletedFertilizer = fertilizerService.removeFertilizerById(23, 3);
@@ -165,6 +210,13 @@ class FertilizerServiceMockitoTest {
 		Fertilizer fertilizer = new Fertilizer(3, "Leaf mould", "www.google.com/leafMould", 189,
 				"It is a form of compost exclusively made by the fungal & bacterial breakdown of dry leaves. Leaf mould is good quality humus.",
 				"1KG");
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(1);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(23)).thenReturn(Optional.of(endUser));
 		Mockito.when(fertilizerRepo.findByFertilizerName("Leaf mould")).thenReturn(fertilizer);
 		assertEquals("Leaf mould", fertilizer.getFertilizerName());
 

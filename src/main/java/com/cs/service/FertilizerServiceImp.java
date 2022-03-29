@@ -34,15 +34,12 @@ public class FertilizerServiceImp implements IFertilizerService {
 
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
 		if (endUser.isEmpty()) {
-			throw new UserNotFoundException("admin not found with the given id:" + userId);
+			throw new UserNotFoundException("User not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add fertilizer to the database");
-		}
-		else if(!endUser.get().getLogin().isLogin())
-		{
+		} else if (!endUser.get().getLogin().isLogin()) {
 			throw new UserNotFoundException("first login to add fertilizer to the database");
-		}
-		else {
+		} else {
 			return fertilizerRepo.save(fertilizer);
 		}
 	}
@@ -86,6 +83,8 @@ public class FertilizerServiceImp implements IFertilizerService {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
+		} else if (!endUser.get().getLogin().isLogin()) {
+			throw new UserNotFoundException("first login to add fertilizer to the database");
 		} else if (!(fertilizer.isPresent())) {
 			throw new FertilizerNotFoundException("Fertilizer with the given id: " + fertilizerId + " is not found");
 		} else {
@@ -104,6 +103,8 @@ public class FertilizerServiceImp implements IFertilizerService {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
+		} else if (!endUser.get().getLogin().isLogin()) {
+			throw new UserNotFoundException("first login to add fertilizer to the database");
 		} else if (fertilizer == null) {
 			throw new FertilizerNotFoundException("Fertilizer with the given name: " + name + " does not exist");
 		}
@@ -120,6 +121,8 @@ public class FertilizerServiceImp implements IFertilizerService {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
+		} else if (!endUser.get().getLogin().isLogin()) {
+			throw new UserNotFoundException("first login to add fertilizer to the database");
 		} else if (fertilizer.isEmpty()) {
 			throw new FertilizerNotFoundException("Fertilizer with the given id: " + fertilizerId + " is not found");
 		}
@@ -131,17 +134,19 @@ public class FertilizerServiceImp implements IFertilizerService {
 	// deletes fertilizer from database based on id.
 	@Override
 	public Fertilizer removeFertilizerById(int userId, int fertilizerId) {
-		Optional<Fertilizer> opt = fertilizerRepo.findById(fertilizerId);
+		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
 		if (endUser.isEmpty()) {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
-		} else if (opt.isEmpty()) {
+		} else if (!endUser.get().getLogin().isLogin()) {
+			throw new UserNotFoundException("first login to add fertilizer to the database");
+		} else if (!(fertilizer.isPresent())) {
 			throw new FertilizerNotFoundException("Fertilizer with the given id: " + fertilizerId + " is not found");
 		}
 		fertilizerRepo.deleteById(fertilizerId);
-		return opt.get();
+		return fertilizer.get();
 	}
 
 	// removes the fertilizer of given name from database
@@ -154,10 +159,13 @@ public class FertilizerServiceImp implements IFertilizerService {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
+		} else if (!endUser.get().getLogin().isLogin()) {
+			throw new UserNotFoundException("first login to add fertilizer to the database");
 		} else if (fertilizer == null) {
 			throw new FertilizerNotFoundException("Fertilizer with the given name: " + name + " does not exist");
 		}
-		return fertilizerRepo.deleteByName(name);
+		fertilizerRepo.deleteByName(name);
+		return fertilizer;
 	}
 
 }

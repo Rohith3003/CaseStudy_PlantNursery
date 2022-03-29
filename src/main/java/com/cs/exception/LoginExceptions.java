@@ -10,6 +10,7 @@ package com.cs.exception;
  * @since 2022-03-27 
  */ 
 
+@SuppressWarnings("serial")
 public class LoginExceptions extends RuntimeException{
 
 	public LoginExceptions() {

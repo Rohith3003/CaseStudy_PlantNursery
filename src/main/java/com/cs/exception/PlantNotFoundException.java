@@ -1,5 +1,6 @@
 package com.cs.exception;
 
+@SuppressWarnings("serial")
 public class PlantNotFoundException extends RuntimeException{
 	public PlantNotFoundException()
 	{

@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cs.bean.EndUser;
 import com.cs.bean.Planter;
 import com.cs.exception.PlanterNotFoundException;
 import com.cs.repository.IEndUserRepository;

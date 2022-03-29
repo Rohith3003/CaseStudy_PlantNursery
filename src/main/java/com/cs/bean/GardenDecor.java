@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.URL;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +23,7 @@ public class GardenDecor
 	private int gardenDecorId;
 	@NotBlank(message="Name should not be blank")
 	private String gardenDecorName;
-	@NotBlank(message="Image should not be blank")
+	@URL(message="Must be a valid photo URL")
 	private String gardenDecorImage;
 	@Min(value=0, message="Price must be more than 0")
 	private double gardenDecorPrice;

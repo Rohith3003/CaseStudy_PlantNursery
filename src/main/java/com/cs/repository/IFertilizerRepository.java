@@ -18,7 +18,7 @@ public interface IFertilizerRepository extends JpaRepository<Fertilizer, Integer
 
 	public Fertilizer findByFertilizerName(String name);
 
-	@Query(value = "delete from fertilizer where name=:name returning *", nativeQuery = true)
-	public Fertilizer deleteByName(@Param("name") String name);
+	@Query(value = "delete from fertilizer where name=:name", nativeQuery = true)
+	public void deleteByName(@Param("name") String name);
 
 }

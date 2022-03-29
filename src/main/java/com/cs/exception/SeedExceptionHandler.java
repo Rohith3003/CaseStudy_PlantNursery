@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cs.bean.SeedErrorResponse;
 
+@SuppressWarnings("serial")
 @ControllerAdvice
 public class SeedExceptionHandler extends RuntimeException {
 

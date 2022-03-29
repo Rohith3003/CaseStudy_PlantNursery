@@ -5,6 +5,7 @@ package com.cs.exception;
  * @author Hemanth
  *
  */
+@SuppressWarnings("serial")
 public class PlanterNotFoundException extends RuntimeException{
 	
 	public PlanterNotFoundException()
