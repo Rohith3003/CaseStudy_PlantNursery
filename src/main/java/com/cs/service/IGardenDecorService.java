@@ -2,7 +2,13 @@ package com.cs.service;
 
 import java.util.List;
 import com.cs.bean.GardenDecor;
-
+/**
+ * This Interface is used to define the services provided to
+ * GardenDecorController so that we can add, delete, update and retrieve the
+ * gardendecor into or from database
+ * @author Mayank Kumar(Employee ID: 46191925)
+ *
+ */
 public interface IGardenDecorService 
 {
 	GardenDecor addGardenDecor(int id, GardenDecor gardenDecor);
