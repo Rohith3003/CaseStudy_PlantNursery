@@ -14,14 +14,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.cs.bean.GardenDecor;
 import com.cs.service.IGardenDecorService;
-
+/**
+ * This class is used as controller to add, delete, update and retrieve gardendecor to and from database
+ * @author Mayank Kumar(Employee ID: 46191925)
+ *
+ */
 @RestController
 public class GardenDecorController 
 {
 	@Autowired
 	IGardenDecorService gardenDecorServ;
 	
-	// add garden decor
+	/**
+	 * Adds new gardendecor to the database.
+	 * @param id
+	 * @param gardenDecor
+	 * @return eturns the gardendecor object which is persisted in database.
+	 */
 	@PostMapping("/addGardenDecor/{id}")
 	ResponseEntity<GardenDecor> addGardenDecor(@Valid @PathVariable("id") int id, @RequestBody GardenDecor gardenDecor) 
 	{
@@ -29,7 +38,11 @@ public class GardenDecorController
 		return new ResponseEntity<>(gd, HttpStatus.CREATED);
 	}
 	
-	// get garden decor based on id
+	/**
+	 * Retrieves the gardendecor of given id from database.
+	 * @param gardenDecorId
+	 * @return Returns the gardendecor of given id.
+	 */
 	@GetMapping("/getGardenDecorById/{id}")
 	ResponseEntity<GardenDecor> getTraineeById(@PathVariable("id") int gardenDecorId) 
 	{
@@ -37,14 +50,23 @@ public class GardenDecorController
 		return new ResponseEntity<>(gardenDecor, HttpStatus.OK);
 	}
 	
-	// get all garden decor
+	/**
+	 * Retrieves the list of all available gardendecor from database.
+	 * @return Returns the list of gardendecor.
+	 */
 	@GetMapping("/getAllGardenDecor/{id}")
 	List<GardenDecor> getAllGardenDecor() 
 	{
 		return gardenDecorServ.getAllGardenDecor();
 	}
 	
-	// update garden decor name based on id
+	/**
+	 * Updates the name of existing gardendecor of given id.
+	 * @param id
+	 * @param gardenDecorId
+	 * @param gardenDecorName
+	 * @return Returns the updated gardendecor object from database.
+	 */
 	@PutMapping("/updateGardenDecorNameById/{id}")
 	ResponseEntity<GardenDecor> updateGardenDecorNameById(@Valid @PathVariable("id") int id, @RequestBody int gardenDecorId, @RequestBody String gardenDecorName) 
 	{
@@ -52,7 +74,13 @@ public class GardenDecorController
 		return new ResponseEntity<>(gardenDecor, HttpStatus.CREATED);
 	}
 	
-	// update garden decor price based on id
+	/**
+	 * Updates the price of existing gardendecor of given id.
+	 * @param id
+	 * @param gardenDecorId
+	 * @param gardenDecorPrice
+	 * @return Returns the updated gardendecor object from database.
+	 */
 	@PutMapping("/updateGardenDecorPriceById/{id}")
 	ResponseEntity<GardenDecor> updateGardenDecorPriceById(@Valid @PathVariable("id") int id, @RequestBody int gardenDecorId, @RequestBody float gardenDecorPrice) 
 	{
@@ -60,7 +88,13 @@ public class GardenDecorController
 		return new ResponseEntity<>(gardenDecor, HttpStatus.CREATED);
 	}
 	
-	// update garden decor image based on id
+	/**
+	 * Updates the image of existing gardendecor of given id.
+	 * @param id
+	 * @param gardenDecorId
+	 * @param gardenDecorImage
+	 * @return Returns the updated gardendecor object from database.
+	 */
 	@PutMapping("/updateGardenDecorImageById/{id}")
 	ResponseEntity<GardenDecor> updateGardenDecorImageById(@Valid @PathVariable("id") int id, @RequestBody int gardenDecorId, @RequestBody String gardenDecorImage) 
 	{
@@ -68,7 +102,13 @@ public class GardenDecorController
 		return new ResponseEntity<>(gardenDecor, HttpStatus.CREATED);
 	}
 	
-	// update garden decor description based on id
+	/**
+	 * Updates the description of existing gardendecor of given id.
+	 * @param id
+	 * @param gardenDecorId
+	 * @param gardenDecorDescription
+	 * @return Returns the updated gardendecor object from database.
+	 */
 	@PutMapping("/updateGardenDecorDescriptionById/{id}")
 	ResponseEntity<GardenDecor> updateGardenDecorDescriptionById(@Valid @PathVariable("id") int id, @RequestBody int gardenDecorId, @RequestBody String gardenDecorDescription) 
 	{
@@ -76,7 +116,12 @@ public class GardenDecorController
 		return new ResponseEntity<>(gardenDecor, HttpStatus.CREATED);
 	}
 	
-	// delete garden decor based on id
+	/**
+	 * Deletes the gardendecor of given id from database.
+	 * @param id
+	 * @param gardenDecorId
+	 * @return Returns the deleted gardendecor.
+	 */
 	@DeleteMapping("/deleteGardenDecorById/{id}")
 	ResponseEntity<GardenDecor> updateGardenDecorById(@PathVariable("id") int id, @RequestBody int gardenDecorId) 
 	{
