@@ -6,7 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 import com.cs.bean.Cart;
-
+/**
+ * This class provides basic JUnit test cases for CartService class.
+ * 
+ * @author Mayank Kumar(Employee ID: 46191925)
+ *
+ */
 @SpringBootTest
 public class CartServiceTest 
 {
