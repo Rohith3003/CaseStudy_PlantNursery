@@ -11,7 +11,11 @@ import org.hibernate.validator.constraints.URL;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * This class is for the Garden Decor Entity
+ * @author Mayank Kumar(Employee ID: 46191925)
+ *
+ */
 @Entity
 @Data
 @AllArgsConstructor
