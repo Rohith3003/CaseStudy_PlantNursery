@@ -18,6 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cs.bean.Planter;
 import com.cs.service.IPlanterService;
 
+/**
+ * Controller class for Planter entity containing CRUD operations 
+ * and additional custom operations that reflects the database
+ * @author Hemanth
+ *
+ */
+
 @RestController
 public class PlanterController {
 	

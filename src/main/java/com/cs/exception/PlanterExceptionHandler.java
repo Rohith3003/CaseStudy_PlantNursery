@@ -9,9 +9,18 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cs.bean.PlanterErrorResponse;
 
+/**
+ * Exception handler class to handle all Planter related exceptions.
+ * @author Hemanth 
+ *
+ */
 @ControllerAdvice
 public class PlanterExceptionHandler {
-
+	/**
+	 *  Methosd to handle PlanterNotFoundException
+	 * @param exception
+	 * @return ResponseEntity
+	 */
 	@ExceptionHandler
 	public ResponseEntity<PlanterErrorResponse> handleException(PlanterNotFoundException exception)
 	{

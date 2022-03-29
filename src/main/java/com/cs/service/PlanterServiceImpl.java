@@ -12,12 +12,21 @@ import com.cs.exception.PlanterNotFoundException;
 import com.cs.repository.IEndUserRepository;
 import com.cs.repository.IPlanterRepository;
 
+/**
+ * Planter service implementation class used by PlanterController
+ * to interact with database.
+ * @author Hemanth
+ *
+ */
 @Service
 public class PlanterServiceImpl implements IPlanterService {
 	@Autowired
 	IPlanterRepository planterRepo;
 	@Autowired
 	IEndUserRepository endUserRepo;
+	/**
+	 * 
+	 */
 	@Override
 	public Planter addPlanter(Planter planter) {
 //		Optional<EndUser> endUser = endUserRepo.findById(id);
