@@ -9,7 +9,13 @@ import com.cs.bean.GardenDecor;
 import com.cs.exception.GardenDecorException;
 import com.cs.repository.IGardenDecorRepository;
 import com.cs.repository.IEndUserRepository;
-
+/**
+ * This Class is used to define the services provided to
+ * GardenDecorController so that we can add, delete, update and retrieve the
+ * gardendecor into or from database
+ * @author Mayank Kumar(Employee ID: 46191925)
+ *
+ */
 @Service
 public class GardenDecorServiceImpl implements IGardenDecorService
 {
@@ -18,7 +24,13 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 	@Autowired
 	IEndUserRepository endUserRepo;
 	
-	// add garden decor
+	/**
+	 * Adds new gardendecor to the database.
+	 * 
+	 * @param Id
+	 * @param gardenDecor
+	 * @return Returns the gardendecor object which is persisted in database.
+	 */
 	@Override
 	public GardenDecor addGardenDecor(int id, GardenDecor gardenDecor) 
 	{
@@ -41,7 +53,12 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		}
 	}
 	
-	// get garden decor based on id
+	/**
+	 * Retrieves the gardendecor of given id from database.
+	 * 
+	 * @param id
+	 * @return Returns the gardendecor of given id.
+	 */
 	@Override
 	public GardenDecor getGardenDecorById(int id) 
 	{
@@ -53,14 +70,25 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		return gardenDecor.get();
 	}
 
-	// get all garden decor
+	/**
+	 * Retrieves the list of all available gardendecor from database.
+	 * 
+	 * @return Returns the list of gardendecor.
+	 */
 	@Override
 	public List<GardenDecor> getAllGardenDecor() 
 	{
 		return gardenDecorRepo.findAll();
 	}
 
-	// update garden decor name based on id
+	/**
+	 * Updates the name of existing gardendecor of given id.
+	 * 
+	 * @param id
+	 * @param gardenDecorId
+	 * @param gardenDecorName
+	 * @return Returns the updated gardendecor object from database.
+	 */
 	@Override
 	public GardenDecor updateGardenDecorNameById(int id, int gardenDecorId, String gardenDecorName) 
 	{
@@ -89,7 +117,14 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		}
 	}
 
-	// update garden decor price basen on id
+	/**
+	 * Updates the price of existing gardendecor of given id.
+	 * 
+	 * @param id
+	 * @param gardenDecorId
+	 * @param gardenDecorPrice
+	 * @return Returns the updated gardendecor object from database.
+	 */
 	@Override
 	public GardenDecor updateGardenDecorPriceById(int id, int gardenDecorId, double gardenDecorPrice) 
 	{
@@ -118,7 +153,14 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		}
 	}
 
-	// update garden decor description based on id
+	/**
+	 * Updates the description of existing gardendecor of given id.
+	 * 
+	 * @param id
+	 * @param gardenDecorId
+	 * @param gardenDecorDescription
+	 * @return Returns the updated gardendecor object from database.
+	 */
 	@Override
 	public GardenDecor updateGardenDecorDescriptionById(int id, int gardenDecorId, String gardenDecorDescription) 
 	{
@@ -147,7 +189,14 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		}
 	}
 
-	// update garden decor image based on id
+	/**
+	 * Updates the image of existing gardendecor of given id.
+	 * 
+	 * @param id
+	 * @param gardenDecorId
+	 * @param gardenDecorImage
+	 * @return Returns the updated gardendecor object from database.
+	 */
 	@Override
 	public GardenDecor updateGardenDecorImageById(int id, int gardenDecorId, String gardenDecorImage) 
 	{
@@ -176,7 +225,13 @@ public class GardenDecorServiceImpl implements IGardenDecorService
 		}
 	}
 	
-	// delete garden decor based on id
+	/**
+	 * Deletes the gardendecor of given id from database.
+	 * 
+	 * @param id
+	 * @param gardenDecorId
+	 * @return Returns the deleted gardendecor.
+	 */
 	@Override
 	public GardenDecor deleteGardenDecorById(int id, int gardenDecorId) 
 	{
