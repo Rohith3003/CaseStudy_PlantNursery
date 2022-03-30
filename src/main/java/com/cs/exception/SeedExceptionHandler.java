@@ -9,10 +9,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cs.bean.SeedErrorResponse;
 
+/**
+ * Exception handler class to handle all seed related exceptions.
+ * @author Palak
+ *
+ */
 @SuppressWarnings("serial")
 @ControllerAdvice
 public class SeedExceptionHandler extends RuntimeException {
-
+	/**
+	 *  Method to handle seedNotFoundException
+	 * @param exception
+	 * @return ResponseEntity
+	 */
 	@ExceptionHandler
 	public ResponseEntity<SeedErrorResponse> handleException(SeedNotFoundException exception)
 	{

@@ -11,112 +11,54 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
+/**
+ * Represents Seed entity, contains all the attributes along with validations.
+ * @author- Palak
+ */
 @Entity
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
 public class Seed {
 
 	@Id
 	@GeneratedValue
-	private int seedId;
+	private int seedId; //Takes Seed Id which is unique.
 	
 	@NotEmpty
 	@Size(min=4, message="Seed name should have atleast 4 characters")
-	private String name;
+	private String name; //Takes name of the seed eg. Sunflower Seeds
 	
 	@URL(message="Must be a valid photo URL")
 	private String photoLoc;//Url of the image
 
 	@NotNull
 	@Min(10)
-	private double price;
+	private double price;//Stores price of the seed in double precision
 	
 	@NotNull
 	@Min(20)
-	private int numberOfSeeds;
+	private int numberOfSeeds;//Stores number of seeds
 	
-	
-	private String description;
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	private String description;//Stores description of the screen.
 
 	
-
-	public int getNumberOfSeeds() {
-		return numberOfSeeds;
-	}
-
-
-
-	public void setNumberOfSeeds(int numberOfSeeds) {
-		this.numberOfSeeds = numberOfSeeds;
-	}
-
-
-
-	public int getSeedId() {
-		return seedId;
-	}
-
-    public void setSeedId(int seedId) {
-		this.seedId = seedId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-
-	public double getPrice() {
-		return price;
-	}
-
-	
-
-	public String getPhotoLoc() {
-		return photoLoc;
-	}
-
-
-
-	public void setPhotoLoc(String photoLoc) {
-		this.photoLoc = photoLoc;
-	}
-
-
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-
-	public Seed(int seedId, String name, double price, int numberOfSeeds, String description, String photoLoc) {
-		
-		this.seedId = seedId;
-		this.name = name;
-		this.setPrice(price);
-		this.numberOfSeeds = numberOfSeeds;
-		this.setDescription(description);
-		this.photoLoc = photoLoc;
-	}
 	public Seed() {
-		
+		//Default Constructor
+	}
+
+
+	public Seed(int seedId,
+			@NotEmpty @Size(min = 4, message = "Seed name should have atleast 4 characters") String name,
+			@URL(message = "Must be a valid photo URL") String photoLoc, @NotNull @Min(10) double price,
+			@NotNull @Min(20) int numberOfSeeds, String description) {
+		super();
+		this.seedId = seedId;
+		this.name = name;
+		this.photoLoc = photoLoc;
+		this.price = price;
+		this.numberOfSeeds = numberOfSeeds;
+		this.description = description;
 	}
 
 }

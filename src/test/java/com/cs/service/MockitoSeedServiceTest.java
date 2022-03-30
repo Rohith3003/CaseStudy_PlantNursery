@@ -5,19 +5,30 @@ import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.cs.bean.EndUser;
 import com.cs.bean.Seed;
+import com.cs.bean.Seed;
+import com.cs.bean.Seed;
+import com.cs.bean.Seed;
+import com.cs.bean.Seed;
+import com.cs.bean.Login;
+import com.cs.bean.Seed;
+import com.cs.repository.IEndUserRepository;
 import com.cs.repository.ISeedRepository;
 
 
@@ -30,6 +41,9 @@ public class MockitoSeedServiceTest {
 	@MockBean
 	ISeedRepository seedRepo;
 	
+	@MockBean
+	IEndUserRepository endUserRepo;
+	
 	@BeforeEach
 	void init() {
 		MockitoAnnotations.openMocks(this);
@@ -40,17 +54,17 @@ public class MockitoSeedServiceTest {
 	@Test 
 	public void addSeedTest()
 	{
-		seed=new Seed();
-		seed.setDescription("This is Tomato Seed");
-		seed.setName("Tomato Seed");
-		seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
-		seed.setPrice(500);
+		Seed seed = new Seed(1,"name","image",100,100,"description");
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(1);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(1)).thenReturn(Optional.of(endUser));
 		Mockito.when(seedRepo.save(seed)).thenReturn(seed);
-		returned_seed=seedService.addSeed(seed);
-		assertEquals("This is Tomato Seed", returned_seed.getDescription());
-		assertEquals("Tomato Seed", returned_seed.getName());
-		assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
-		assertEquals(500, returned_seed.getPrice());
+		Seed result = seedService.addSeed(seed,1);
+		assertEquals(result,seed);
 	}
 	
 	@Test
@@ -87,33 +101,73 @@ public class MockitoSeedServiceTest {
 
 	@Test
 	void deleteSeedById() {
-		int id = 10;
-		Seed seed = new Seed(10, "Rajma", 100, 1000, "Bean type Seed", "https://5.imimg.com/data5/YD/KX/IT/SELLER-30286003/lobia-beans-seeds-500x500.jpg");
-	
-		// Return seed
-		Mockito.when(seedRepo.findById(10)).thenReturn(Optional.of(seed));
-		
-		// Handling void methods
-		Mockito.doNothing().when(seedRepo).deleteById(10);
-		
-		// delete seed
-		seedService.deleteSeedById(id);
+		Seed seed = new Seed(1,"name","image",100,100,"description");
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(1);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(1)).thenReturn(Optional.of(endUser));
+		Mockito.when(seedRepo.findById(1)).thenReturn(Optional.of(seed));
+		Mockito.doNothing().when(seedRepo).deleteById(1);
+		Seed result = seedService.deleteSeedById(1,1);
+		assertEquals(result,seed);
 	}
 	@Test
 	public void updateSeedPrice()
 	{
-		seed=new Seed();
-		seed.setDescription("This is flax seed");
-		seed.setName("Flax Seeds");
-		seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
-		seed.setPrice(777);
-		Mockito.when(seedRepo.findById(66)).thenReturn(Optional.of(seed));
-		Mockito.when(seedRepo.save(seed)).thenReturn(seed);
-		returned_seed=seedService.updateSeedPrice(66,777);
-		assertEquals("This is flax seed", returned_seed.getDescription());
-		assertEquals("Flax Seeds", returned_seed.getName());
-		assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
-		assertEquals(777, returned_seed.getPrice());
+		Seed seed1 = new Seed(1,"name","image",10,100,"description");
+		Seed seed2 = new Seed(1,"name","image",20,100,"description");
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(1);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(1)).thenReturn(Optional.of(endUser));
+		Mockito.when(seedRepo.findById(1)).thenReturn(Optional.of(seed1));
+		Mockito.when(seedRepo.save(seed1)).thenReturn(seed2);
+		Seed result = seedService.getSeedById(1);
+		assertEquals(10,result.getPrice());
+		result = seedService.updateSeedPrice(1,1,1);
+		assertEquals(20,result.getPrice());
+
+	}
+	
+	@Test
+	void getAllSeeds()
+	{
+		List<Seed> al = new ArrayList<Seed>();
+		Seed seed1 = new Seed(1,"name1","image1",10,100,"description1");
+		Seed seed2 = new Seed(2,"name2","image2",20,110,"description2");
+		Seed seed3 = new Seed(3,"name3","image3",30,200,"description3");
+		al.add(seed1);
+		al.add(seed2);
+		al.add(seed3);
+		Mockito.when(seedRepo.findAll()).thenReturn(al);
+		List<Seed> result= seedService.getAllSeeds();
+		assertEquals(3,result.size());
+	}
+	
+	@Test
+	void updateSeedPhoto()
+	{
+		Seed seed1 = new Seed(1,"name","image1",10,100,"description");
+		Seed seed2 = new Seed(1,"name","image2",10,100,"description");
+		EndUser endUser = new EndUser();
+		Login login = new Login();
+		login.setLogin(true);
+		endUser.setId(1);
+		endUser.setAdmin(true);
+		endUser.setLogin(login);
+		Mockito.when(endUserRepo.findById(1)).thenReturn(Optional.of(endUser));
+		Mockito.when(seedRepo.findById(1)).thenReturn(Optional.of(seed1));
+		Mockito.when(seedRepo.save(seed1)).thenReturn(seed2);
+		Seed result = seedService.getSeedById(1);
+		assertEquals("image1",result.getPhotoLoc());
+		result = seedService.updateSeedPhoto(1,"image2",1);
+		assertEquals("image2",result.getPhotoLoc());
 	}
 	
 	

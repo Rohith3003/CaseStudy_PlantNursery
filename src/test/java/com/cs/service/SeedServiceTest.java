@@ -30,7 +30,7 @@ public class SeedServiceTest {
 		seed.setName("Cauliflower Seeds");
 		seed.setPhotoLoc("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg");
 		seed.setPrice(500);
-		returned_seed=seedService.addSeed(seed);
+		returned_seed=seedService.addSeed(seed,50);
 	}
 	
 	@Test
@@ -45,7 +45,7 @@ public class SeedServiceTest {
 	@Disabled
 	void deleteSeedById()
 	{
-		seedService.deleteSeedById(101);
+		seedService.deleteSeedById(101,60);
 		Seed result= seedService.getSeedById(101);
 		assertEquals(0,result.getNumberOfSeeds());
 	}
@@ -59,21 +59,21 @@ public class SeedServiceTest {
 	 @Disabled
 	 void updateSeedPrice()
 	 {
-		 Seed result= seedService.updateSeedPrice(101, 100);
+		 Seed result= seedService.updateSeedPrice(101, 100,50);
 		 assertEquals(101,result.getPrice());
 	 }
 	@Test
 	@Disabled
 	void updateSeedImageById()
 	{
-		Seed result = seedService.updateSeedPhoto(101,"image");
+		Seed result = seedService.updateSeedPhoto(101,"image",50);
 		assertEquals("image",result.getPhotoLoc());
 	}
 	
 	@Test
 	void getAllSeed() {
 		List<Seed> seeds = seedService.getAllSeeds();
-		assertEquals(14, seeds.size());
+		assertEquals(17, seeds.size());
 	}
 
 }

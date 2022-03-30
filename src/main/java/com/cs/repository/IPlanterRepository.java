@@ -25,7 +25,7 @@ public interface IPlanterRepository extends JpaRepository<Planter, Integer> {
 	public Planter getByName(@Param("name") String name);
 	
 	/**
-	 * Delete Planter by name
+      	 * Delete Planter by name
 	 * @param name
 	 * @return planter
 	 */
