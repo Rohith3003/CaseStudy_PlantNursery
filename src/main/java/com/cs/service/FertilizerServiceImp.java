@@ -39,7 +39,7 @@ public class FertilizerServiceImp implements IFertilizerService {
 	public Fertilizer addFertilizer(int userId, Fertilizer fertilizer) {
 
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
-		if (endUser.isEmpty()) {
+		if (!endUser.isPresent()) {
 			throw new UserNotFoundException("User not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add fertilizer to the database");
@@ -60,7 +60,7 @@ public class FertilizerServiceImp implements IFertilizerService {
 	public Fertilizer getFertilizerById(int id) {
 
 		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(id);
-		if (fertilizer.isEmpty()) {
+		if (!fertilizer.isPresent()) {
 			throw new FertilizerNotFoundException("Fertilizer with the given id: " + id + " is not found");
 		}
 		return fertilizer.get();
@@ -106,7 +106,7 @@ public class FertilizerServiceImp implements IFertilizerService {
 
 		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
-		if (endUser.isEmpty()) {
+		if (!endUser.isPresent()) {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
@@ -133,7 +133,7 @@ public class FertilizerServiceImp implements IFertilizerService {
 
 		Fertilizer fertilizer = fertilizerRepo.findByFertilizerName(name);
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
-		if (endUser.isEmpty()) {
+		if (!endUser.isPresent()) {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
@@ -158,7 +158,7 @@ public class FertilizerServiceImp implements IFertilizerService {
 	public Fertilizer updatePriceAndQuantityById(int userId, int fertilizerId, double price, String quantity) {
 		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
-		if (endUser.isEmpty()) {
+		if (!endUser.isPresent()) {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
@@ -183,7 +183,7 @@ public class FertilizerServiceImp implements IFertilizerService {
 	public Fertilizer removeFertilizerById(int userId, int fertilizerId) {
 		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
-		if (endUser.isEmpty()) {
+		if (!endUser.isPresent()) {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");
@@ -208,7 +208,7 @@ public class FertilizerServiceImp implements IFertilizerService {
 
 		Fertilizer fertilizer = fertilizerRepo.findByFertilizerName(name);
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
-		if (endUser.isEmpty()) {
+		if (!endUser.isPresent()) {
 			throw new UserNotFoundException("admin not found with the given id:" + userId);
 		} else if (!endUser.get().isAdmin()) {
 			throw new UserNotFoundException("only admin can add garden decor to the database");

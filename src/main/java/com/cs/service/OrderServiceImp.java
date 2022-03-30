@@ -37,7 +37,7 @@ public class OrderServiceImp implements IOrderService {
 	@Override
 	public OrderDetails placeOrder(int customerId, Payment payment) {
 		Optional<EndUser> endUser = endUserRepo.findById(customerId);
-		if(endUser.isEmpty())
+		if(!endUser.isPresent())
 		{
 			throw new UserNotFoundException("Customer with the given id: "+customerId+" not found.");
 		}
@@ -82,7 +82,7 @@ public class OrderServiceImp implements IOrderService {
 	@Override
 	public List<OrderDetails> viewOrder(int customerId) {
 		Optional<EndUser> endUser = endUserRepo.findById(customerId);
-		if(endUser.isEmpty())
+		if(!endUser.isPresent())
 		{
 			throw new UserNotFoundException("Customer with the given id: "+customerId+" not found.");
 		}
