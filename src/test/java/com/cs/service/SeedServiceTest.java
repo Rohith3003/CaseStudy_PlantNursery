@@ -6,39 +6,37 @@ import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cs.bean.Seed;
 
-
 @SpringBootTest
 public class SeedServiceTest {
-	
+
 	@Autowired
 	ISeedService seedService;
-	
-	Seed returned_seed;
-	@Test 
-	@Disabled
-	public void addSeedTest()
-	{
-		Seed seed=new Seed();
 
-		seed.setDescription("Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.");
+	Seed returned_seed;
+
+	@Test
+	@Disabled
+	public void addSeedTest() {
+		Seed seed = new Seed();
+
+		seed.setDescription(
+				"Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.");
 		seed.setName("Cauliflower Seeds");
 		seed.setPhotoLoc("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg");
 		seed.setPrice(500);
 		returned_seed=seedService.addSeed(seed,50);
 	}
-	
+
 	@Test
 	@Disabled
-	void getSeedById()
-	{
+	void getSeedById() {
 		Seed result = seedService.getSeedById(101);
-		assertEquals(101,result.getSeedId());
+		assertEquals(101, result.getSeedId());
 	}
 
 	@Test
@@ -69,7 +67,7 @@ public class SeedServiceTest {
 		Seed result = seedService.updateSeedPhoto(101,"image",50);
 		assertEquals("image",result.getPhotoLoc());
 	}
-	
+
 	@Test
 	void getAllSeed() {
 		List<Seed> seeds = seedService.getAllSeeds();

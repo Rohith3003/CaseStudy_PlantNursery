@@ -53,7 +53,7 @@ public class AddressServiceImp implements IAddressService {
 	public Address getAddresById(int id) {
 
 		Optional<Address> address = addressRepo.findById(id);
-		if (address.isEmpty()) {
+		if (!address.isPresent()) {
 			throw new AddressNotFoundException("Address with the given id: " + id + " does not exist.");
 		}
 		return address.get();
@@ -85,7 +85,7 @@ public class AddressServiceImp implements IAddressService {
 	public Address updateAddressById(int id, Address address) {
 
 		Optional<Address> oldAddress = addressRepo.findById(id);
-		if (oldAddress.isEmpty()) {
+		if (!oldAddress.isPresent()) {
 			throw new AddressNotFoundException("Address with the given id: " + id + " does not exist.");
 		}
 		oldAddress.get().setBuildingName(address.getBuildingName());
@@ -94,6 +94,7 @@ public class AddressServiceImp implements IAddressService {
 		oldAddress.get().setCountry(address.getCountry());
 		oldAddress.get().setFlatNum(address.getFlatNum());
 		oldAddress.get().setPincode(address.getPincode());
+		oldAddress.get().setState(address.getState());
 		return addressRepo.save(oldAddress.get());
 	}
 
@@ -106,7 +107,7 @@ public class AddressServiceImp implements IAddressService {
 	@Override
 	public Address deleteAddressById(int id) {
 		Optional<Address> address = addressRepo.findById(id);
-		if (address.isEmpty()) {
+		if (!address.isPresent()) {
 			throw new AddressNotFoundException("Address with the given id: " + id + " does not exist.");
 		}
 		addressRepo.deleteById(id);

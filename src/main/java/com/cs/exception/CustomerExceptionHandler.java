@@ -71,17 +71,7 @@ public class CustomerExceptionHandler {
 	}
 
 	@ExceptionHandler
-	public ResponseEntity<UserErrorResponse> handleException(DuplicateEmailIdException exception) {
-		UserErrorResponse error = new UserErrorResponse();
-		error.setStatus(HttpStatus.NOT_FOUND.value());
-		error.setMessage(exception.getMessage());
-		error.setTimeStamp(LocalDateTime.now());
-
-		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-	}
-
-	@ExceptionHandler
-	public ResponseEntity<UserErrorResponse> handleException(DuplicateMobileNumbersException exception) {
+	public ResponseEntity<UserErrorResponse> handleException(DuplicateValuesException exception) {
 		UserErrorResponse error = new UserErrorResponse();
 		error.setStatus(HttpStatus.NOT_FOUND.value());
 		error.setMessage(exception.getMessage());

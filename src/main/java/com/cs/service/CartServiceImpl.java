@@ -265,11 +265,11 @@ public class CartServiceImpl implements ICartService
 		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<Cart> cart = cartRepo.findById(cartId);
 		double cost = cart.get().getCartCost();
-		if(fertilizer.isEmpty())
+		if(!fertilizer.isPresent())
 		{
 			throw new FertilizerNotFoundException("fertilizer not found with the given id:" + fertilizerId);
 		}
-		if(cart.isEmpty())
+		if(!cart.isPresent())
 		{
 			throw new CartException("cart not found with the given id:" + cartId);
 		}
@@ -297,11 +297,11 @@ public class CartServiceImpl implements ICartService
 		Optional<Fertilizer> fertilizer = fertilizerRepo.findById(fertilizerId);
 		Optional<Cart> cart = cartRepo.findById(cartId);
 		double cost = cart.get().getCartCost();
-		if(fertilizer.isEmpty())
+		if(!fertilizer.isPresent())
 		{
 			throw new FertilizerNotFoundException("fertilizer not found with the given id:" + fertilizerId);
 		}
-		if(cart.isEmpty())
+		if(!cart.isPresent())
 		{
 			throw new CartException("cart not found with the given id:" + cartId);
 		}

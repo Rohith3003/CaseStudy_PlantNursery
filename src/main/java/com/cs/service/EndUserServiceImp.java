@@ -16,12 +16,10 @@ import com.cs.bean.Address;
 import com.cs.bean.Cart;
 import com.cs.bean.EndUser;
 import com.cs.bean.Login;
-import com.cs.bean.OrderDetails;
 import com.cs.dto.Register;
 import com.cs.dto.RegisterOutputDto;
 import com.cs.exception.CustomerNotFoundException;
-import com.cs.exception.DuplicateEmailIdException;
-import com.cs.exception.DuplicateMobileNumbersException;
+import com.cs.exception.DuplicateValuesException;
 import com.cs.exception.PasswordDoNotMatchException;
 import com.cs.repository.IAddressRepository;
 import com.cs.repository.ICartRepository;
@@ -48,7 +46,7 @@ public class EndUserServiceImp implements IEndUserService {
 		newCustomer.setMobileNumber(register.getMobileNumber());
 		EndUser customer = endUserRepository.getByMobileNumber(register.getMobileNumber());
 		if (customer != null) {
-			throw new DuplicateMobileNumbersException(
+			throw new DuplicateValuesException(
 					"Customer with the given phone number already exists, try registering using other mobile number");
 		}
 		customer = null;
@@ -58,7 +56,7 @@ public class EndUserServiceImp implements IEndUserService {
 		newCustomer.setAdmin(register.isAdmin());
 		customer = endUserRepository.getByEmailId(register.getEmailId());
 		if (customer != null) {
-			throw new DuplicateEmailIdException(
+			throw new DuplicateValuesException(
 					"Customer with the given email Id already exists, try registering using other email id or login though this mail Id");
 		}
 		Login login = new Login();
@@ -273,7 +271,6 @@ public class EndUserServiceImp implements IEndUserService {
 		customer.getAddress().setState(address.getState());
 		endUserRepository.save(customer);
 		return register;
-		// return null;
 	}
 
 	@Override
@@ -315,8 +312,7 @@ public class EndUserServiceImp implements IEndUserService {
 		}
 		EndUser customer = endUserRepository.getById(id);
 
-		customer.getCart().getCartCost();
-		return 0;
+		return customer.getCart().getCartCost();
 	}
 
 }

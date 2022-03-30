@@ -23,14 +23,14 @@ public class Address {
 
 	@Id
 	@GeneratedValue
-	int addressId;
-	int flatNum;
-	String buildingName;
-	String colony;
-	String city;
-	String state;
-	int pincode;
-	String country;
+	private int addressId;
+	private int flatNum;
+	private String buildingName;
+	private String colony;
+	private String city;
+	private String state;
+	private int pincode;
+	private String country;
 
 	/**
 	 * Parameterized Constructor

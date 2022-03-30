@@ -1,8 +1,6 @@
 package com.cs.bean;
 
 import java.util.Date;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -42,7 +39,7 @@ import lombok.Setter;
 public class EndUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 	@Column(unique = true)
 	private String mobileNumber;
 	private String fullName;
@@ -68,9 +65,8 @@ public class EndUser {
 	@JoinColumn(name = "cart_Id")
 	private Cart cart;
 
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private OrderDetails order;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "order_id")
+	private OrderDetails order;
 
 }

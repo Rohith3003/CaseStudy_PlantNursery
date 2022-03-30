@@ -1,9 +1,6 @@
 package com.cs.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.CALLS_REAL_METHODS;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -31,13 +27,12 @@ import com.cs.bean.Seed;
 import com.cs.repository.IEndUserRepository;
 import com.cs.repository.ISeedRepository;
 
-
 @ExtendWith(SpringExtension.class)
 public class MockitoSeedServiceTest {
 
 	@InjectMocks
 	SeedServiceImpl seedService;
-	
+
 	@MockBean
 	ISeedRepository seedRepo;
 	
@@ -48,7 +43,7 @@ public class MockitoSeedServiceTest {
 	void init() {
 		MockitoAnnotations.openMocks(this);
 	}
-	
+
 	Seed seed;
 	Seed returned_seed;
 	@Test 
@@ -66,33 +61,34 @@ public class MockitoSeedServiceTest {
 		Seed result = seedService.addSeed(seed,1);
 		assertEquals(result,seed);
 	}
-	
+
 	@Test
-	public void getSeedByIdTest()
-	{
-		seed=new Seed();
-		seed.setDescription("Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.");
+	public void getSeedByIdTest() {
+		seed = new Seed();
+		seed.setDescription(
+				"Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.");
 		seed.setName("Cauliflower seeds");
 		seed.setPhotoLoc("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg");
 		seed.setPrice(500);
 		Mockito.when(seedRepo.findById(66)).thenReturn(Optional.of(seed));
-		returned_seed=seedService.getSeedById(66);
-		assertEquals("Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.", returned_seed.getDescription());
+		returned_seed = seedService.getSeedById(66);
+		assertEquals(
+				"Cauliflower seeds have always believed in sustainable development of environment by believing in growing a plant.",
+				returned_seed.getDescription());
 		assertEquals("Cauliflower seeds", returned_seed.getName());
 		assertEquals("https://m.media-amazon.com/images/I/71v16h4eX7L._SX679_.jpg", returned_seed.getPhotoLoc());
 		assertEquals(500, returned_seed.getPrice());
 	}
-	
+
 	@Test
-	public void getSeedByNameTest()
-	{
-		seed=new Seed();
+	public void getSeedByNameTest() {
+		seed = new Seed();
 		seed.setDescription("This is Ceramic type pot");
 		seed.setName("Cream Stripes M");
 		seed.setPhotoLoc("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg");
 		seed.setPrice(650);
 		Mockito.when(seedRepo.getByName("Cream Stripes M")).thenReturn(seed);
-		returned_seed=seedService.getSeedByName("Cream Stripes M");
+		returned_seed = seedService.getSeedByName("Cream Stripes M");
 		assertEquals("This is Ceramic type pot", returned_seed.getDescription());
 		assertEquals("Cream Stripes M", returned_seed.getName());
 		assertEquals("https://m.media-amazon.com/images/I/81wOdvLuauL._SL1500_.jpg", seed.getPhotoLoc());
@@ -114,6 +110,7 @@ public class MockitoSeedServiceTest {
 		Seed result = seedService.deleteSeedById(1,1);
 		assertEquals(result,seed);
 	}
+
 	@Test
 	public void updateSeedPrice()
 	{
@@ -169,6 +166,5 @@ public class MockitoSeedServiceTest {
 		result = seedService.updateSeedPhoto(1,"image2",1);
 		assertEquals("image2",result.getPhotoLoc());
 	}
-	
-	
+
 }

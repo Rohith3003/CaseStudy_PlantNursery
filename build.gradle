@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot' version '2.6.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "org.sonarqube" version "3.3"
+	id "jacoco"
 }
 
 group = 'com.cs'
@@ -17,6 +19,8 @@ configurations {
 repositories {
 	mavenCentral()
 }
+
+project.tasks["sonarqube"].dependsOn "test"
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

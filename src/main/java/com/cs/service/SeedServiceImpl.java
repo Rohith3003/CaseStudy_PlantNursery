@@ -54,7 +54,7 @@ public class SeedServiceImpl implements ISeedService {
 	public Seed getSeedById(int id) {
 		//Fetches a seed from the database by Seed Id.
 		Optional<Seed> seed=seedRepo.findById(id);
-		if(seed.isEmpty())
+		if(!seed.isPresent())
 			throw new SeedNotFoundException("Seed not found with id: "+id);
 		return seed.get();
 	}

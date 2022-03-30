@@ -30,9 +30,7 @@ public class PlanterServiceImpl implements IPlanterService {
 	IPlanterRepository planterRepo;
 	@Autowired
 	IEndUserRepository endUserRepo;
-	/**
-	 * 
-	 */
+
 	@Override
 	public Planter addPlanter(Planter planter, int userId) {
 		Optional<EndUser> endUser = endUserRepo.findById(userId);
@@ -50,12 +48,6 @@ public class PlanterServiceImpl implements IPlanterService {
 		}
 	}
 
-//	@Override
-//	public Planter updatePlanter(Planter planter) {
-//		// TODO Auto-generated method stub
-//		
-//		return planterRepo.save(planter);
-//	}
 
 	@Override
 	public Planter getPlanterById(int id) {
@@ -185,17 +177,33 @@ public class PlanterServiceImpl implements IPlanterService {
 		Planter returned_planter=planterRepo.getByName(name);
 		if(returned_planter==null)
 			throw new PlanterNotFoundException("Planter with name: "+name+" not found");
-		return planterRepo.deleteByName(name);
+		return returned_planter;
 		}
 	}
 
 	@Override
 	public Planter updatePlanterPrice(String name,float price, int userId) {
-		Planter returned_planter=planterRepo.getByName(name);
-		if(returned_planter==null)
-			throw new PlanterNotFoundException("Planter with name: "+name+" not found");
-		returned_planter.setPrice(price);
-		return planterRepo.save(returned_planter);
+		Optional<EndUser> endUser = endUserRepo.findById(userId);
+		if(!endUser.isPresent())
+		{
+			throw new PlanterNotFoundException("admin not found with the given id:" + userId);
+		}
+		else if(!endUser.get().isAdmin())
+		{
+			throw new PlanterNotFoundException("only admin can add planter to the database");
+		}
+		else if(!endUser.get().getLogin().isLogin())
+		{
+			throw new PlanterNotFoundException("first login to add planter to the database");
+		}
+		else
+		{
+			Planter returned_planter=planterRepo.getByName(name);
+			if(returned_planter==null)
+				throw new PlanterNotFoundException("Planter with name: "+name+" not found");
+			returned_planter.setPrice(price);
+			return planterRepo.save(returned_planter);
+		}
 	}
 
 	@Override

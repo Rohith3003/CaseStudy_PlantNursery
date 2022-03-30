@@ -68,11 +68,11 @@ class FertilizerServiceTest {
 	 */
 	@Test
 	public void getFertilizerByIdTest() {
-		Fertilizer fertilizer = fertilizerService.getFertilizerById(1);
-		assertEquals(1, fertilizer.getFertilizerId());
-		assertEquals(49.99, fertilizer.getFertilizerPrice());
+		Fertilizer fertilizer = fertilizerService.getFertilizerById(5);
+		assertEquals(5, fertilizer.getFertilizerId());
+		assertEquals(20, fertilizer.getFertilizerPrice());
 		assertEquals("compost", fertilizer.getFertilizerName());
-		assertEquals("www.google.com/compost", fertilizer.getFertilizerImage());
+		assertEquals("https://www.compostImage.jpg", fertilizer.getFertilizerImage());
 		assertEquals(
 				"The process involves decomposing organic material into a humus-like material, known as compost, which is a good fertilizer for plants.",
 				fertilizer.getFertilizerDescription());
@@ -84,17 +84,16 @@ class FertilizerServiceTest {
 	 * FertilizerService.
 	 */
 	@Test
-	@Disabled
 	public void getFertilizerByNameTest() {
-		Fertilizer fertilizer = fertilizerService.getFertilizerByName("vermicompost");
-		assertEquals(12, fertilizer.getFertilizerId());
-		assertEquals(99.99, fertilizer.getFertilizerPrice());
-		assertEquals("vermicompost", fertilizer.getFertilizerName());
-		assertEquals("www.google.com/vermicompost", fertilizer.getFertilizerImage());
+		Fertilizer fertilizer = fertilizerService.getFertilizerByName("Vermicompost");
+		assertEquals(8, fertilizer.getFertilizerId());
+		assertEquals(39.99, fertilizer.getFertilizerPrice());
+		assertEquals("Vermicompost", fertilizer.getFertilizerName());
+		assertEquals("https://wwww.Vermicompost.jpg", fertilizer.getFertilizerImage());
 		assertEquals(
 				"It is manure obtained from the disintegration of organic waste by earthworms. Vermicompost is moist, dark, consistent manure with a slow & steady supply of nutrients.",
 				fertilizer.getFertilizerDescription());
-		assertEquals("5KG", fertilizer.getFertilizerQuantity());
+		assertEquals("1KG", fertilizer.getFertilizerQuantity());
 	}
 
 	/**
@@ -102,10 +101,9 @@ class FertilizerServiceTest {
 	 * FertilizerService.
 	 */
 	@Test
-	@Disabled
 	public void updatePriceById() {
-		Fertilizer fertilizer = fertilizerService.updatePriceById(23, 12, 89.99);
-		assertEquals(12, fertilizer.getFertilizerId());
+		Fertilizer fertilizer = fertilizerService.updatePriceById(1, 8, 89.99);
+		assertEquals(8, fertilizer.getFertilizerId());
 		assertEquals(89.99, fertilizer.getFertilizerPrice());
 	}
 
