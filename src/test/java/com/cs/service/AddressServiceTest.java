@@ -60,7 +60,7 @@ class AddressServiceTest {
 	@Test
 	void getAllAddressesTest() {
 		List<Address> addresses = addressService.getAllAddresses();
-		assertEquals(4, addresses.size());
+		assertEquals(2, addresses.size());
 	}
 
 	/**
@@ -69,9 +69,9 @@ class AddressServiceTest {
 	 */
 	@Test
 	void updateAddressByIdTest() {
-		Address address = new Address(16, 305, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
+		Address address = new Address(1, 305, "EternalBuiliding", "Saroornagar", "Hyderabad", "Telangana", 500078,
 				"India");
-		Address updatedAddress = addressService.updateAddressById(16, address);
+		Address updatedAddress = addressService.updateAddressById(1, address);
 		assertEquals(address, updatedAddress);
 	}
 

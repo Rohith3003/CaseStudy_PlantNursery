@@ -56,8 +56,8 @@ public class CustomerServiceTest {
 
 	@Test
 	void getCustomerByNameTest() {
-		List<RegisterOutputDto> registerDtos = endUserService.getCustomersByName("Karthik");
-		assertEquals(3, registerDtos.size());
+		List<RegisterOutputDto> registerDtos = endUserService.getCustomersByName("Kiran");
+		assertEquals(1, registerDtos.size());
 	}
 
 	@Test
@@ -71,13 +71,13 @@ public class CustomerServiceTest {
 	@Test
 	void getAllCustomersDtoTest() {
 		List<RegisterOutputDto> customersDto = endUserService.getAllCustomerDto();
-		assertEquals(4, customersDto.size());
+		assertEquals(2, customersDto.size());
 	}
 
 	@Test
 	void getAllCustomersTest() {
 		List<EndUser> customersDto = endUserService.getAllCustomer();
-		assertEquals(4, customersDto.size());
+		assertEquals(2, customersDto.size());
 	}
 
 	@Test
@@ -112,11 +112,10 @@ public class CustomerServiceTest {
 	@Test
 	void updateCustomerAddressTest() {
 		Address address = new Address(103, "Estate", "Uppal", "Hyd", "Ts", 501010, "India");
-		RegisterOutputDto registerDto = endUserService.updateCustomerAddress(3, address);
-		assertEquals("karthi@gmail.com", registerDto.getEmailId());
-		assertEquals("Karthik", registerDto.getName());
-		assertEquals("8485848595", registerDto.getMobileNumber());
-		assertEquals(7, registerDto.getCartId());
+		RegisterOutputDto registerDto = endUserService.updateCustomerAddress(2, address);
+		assertEquals("kiran@gmail.com", registerDto.getEmailId());
+		assertEquals("Kiran", registerDto.getName());
+		assertEquals("9897561233", registerDto.getMobileNumber());
 		assertEquals("Estate", registerDto.getAddress().getBuildingName());
 		assertEquals("Hyd", registerDto.getAddress().getCity());
 		assertEquals("Uppal", registerDto.getAddress().getColony());
@@ -129,14 +128,14 @@ public class CustomerServiceTest {
 
 	@Test
 	void getCustomerCartId() {
-		Integer cartId = endUserService.getCustomerCartId(1);
+		Integer cartId = endUserService.getCustomerCartId(2);
 		assertEquals(4, cartId);
 
 	}
 
 	@Test
 	void updatePassword() {
-		String message = endUserService.updatePassword("karthik1@gmail.com", "@Karthi!545", "@Karthi!56", "@Karthi!56");
+		String message = endUserService.updatePassword("kiran@gmail.com", "kiran123", "Kiran@56", "Kiran@56");
 		assertEquals("Password is updated successfully", message);
 	}
 
