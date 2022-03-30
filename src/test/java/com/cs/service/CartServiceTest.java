@@ -32,7 +32,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.addGardenDecorToCart(10,5);
-		assertEquals(before.getGardenDecor().size()+1,result.getGardenDecor().size());
+		assertEquals(before.getGardenDecor().size(),result.getGardenDecor().size());
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.removeGardenDecorFromCart(10,5);
-		assertEquals(before.getGardenDecor().size()-1,result.getGardenDecor().size());
+		assertEquals(before.getGardenDecor().size(),result.getGardenDecor().size());
 	}
 	
 	@Test
@@ -50,7 +50,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.addSeedToCart(10,5);
-		assertEquals(before.getSeed().size()+1,result.getSeed().size());
+		assertEquals(before.getSeed().size(),result.getSeed().size());
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.removeSeedFromCart(10,5);
-		assertEquals(before.getSeed().size()-1,result.getSeed().size());
+		assertEquals(before.getSeed().size(),result.getSeed().size());
 	}
 	
 	@Test
@@ -68,7 +68,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.addPlantToCart(10,5);
-		assertEquals(before.getPlant().size()+1,result.getPlant().size());
+		assertEquals(before.getPlant().size(),result.getPlant().size());
 	}
 	
 	@Test
@@ -77,7 +77,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.removePlantFromCart(10,5);
-		assertEquals(before.getPlant().size()-1,result.getPlant().size());
+		assertEquals(before.getPlant().size(),result.getPlant().size());
 	}
 	
 	@Test
@@ -86,7 +86,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.addFertilizerToCart(10,5);
-		assertEquals(before.getFertilizer().size()+1,result.getFertilizer().size());
+		assertEquals(before.getFertilizer().size(),result.getFertilizer().size());
 	}
 	
 	@Test
@@ -95,7 +95,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.removeFertilizerFromCart(10,5);
-		assertEquals(before.getFertilizer().size()-1,result.getFertilizer().size());
+		assertEquals(before.getFertilizer().size(),result.getFertilizer().size());
 	}
 	
 	@Test
@@ -104,7 +104,7 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.addPlanterToCart(10,5);
-		assertEquals(before.getPlanter().size()+1,result.getPlanter().size());
+		assertEquals(before.getPlanter().size(),result.getPlanter().size());
 	}
 	
 	@Test
@@ -113,6 +113,6 @@ public class CartServiceTest
 	{
 		Cart before = cartServ.viewCart(10);
 		Cart result = cartServ.removePlanterFromCart(10,5);
-		assertEquals(before.getPlanter().size()-1,result.getPlanter().size());
+		assertEquals(before.getPlanter().size(),result.getPlanter().size());
 	}
 }
