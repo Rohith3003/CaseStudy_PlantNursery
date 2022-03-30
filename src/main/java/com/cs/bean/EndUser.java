@@ -39,7 +39,7 @@ import lombok.Setter;
 public class EndUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 	@Column(unique = true)
 	private String mobileNumber;
 	private String fullName;

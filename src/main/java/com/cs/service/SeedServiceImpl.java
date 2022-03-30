@@ -42,7 +42,7 @@ public class SeedServiceImpl implements ISeedService {
 	@Override
 	public Seed getSeedById(int id) {
 		Optional<Seed> seed=seedRepo.findById(id);
-		if(seed.isEmpty())
+		if(!seed.isPresent())
 			throw new SeedNotFoundException("Seed not found with id: "+id);
 		return seed.get();
 	}
