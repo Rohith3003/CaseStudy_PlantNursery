@@ -98,7 +98,7 @@ public class SeedController {
 	@PatchMapping("/updateSeedPhoto/{id}/{userId}")
 	public ResponseEntity<Seed> updatePhoto(@RequestBody String photoLoc,@PathVariable("id") int id, @PathVariable("userId") int userId)
 	{
-		return new ResponseEntity<Seed>(seedService.updateSeedPhoto(id, photoLoc, userId),HttpStatus.OK);
+		return new ResponseEntity<Seed>(seedService.updateSeedPhoto( id,photoLoc, userId),HttpStatus.OK);
 	}
 	
 	/**

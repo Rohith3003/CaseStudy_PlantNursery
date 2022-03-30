@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cs.bean.GardenDecor;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
