@@ -19,8 +19,7 @@ import com.cs.bean.Login;
 import com.cs.dto.Register;
 import com.cs.dto.RegisterOutputDto;
 import com.cs.exception.CustomerNotFoundException;
-import com.cs.exception.DuplicateEmailIdException;
-import com.cs.exception.DuplicateMobileNumbersException;
+import com.cs.exception.DuplicateValuesException;
 import com.cs.exception.PasswordDoNotMatchException;
 import com.cs.repository.IAddressRepository;
 import com.cs.repository.ICartRepository;
@@ -47,7 +46,7 @@ public class EndUserServiceImp implements IEndUserService {
 		newCustomer.setMobileNumber(register.getMobileNumber());
 		EndUser customer = endUserRepository.getByMobileNumber(register.getMobileNumber());
 		if (customer != null) {
-			throw new DuplicateMobileNumbersException(
+			throw new DuplicateValuesException(
 					"Customer with the given phone number already exists, try registering using other mobile number");
 		}
 		customer = null;
@@ -57,7 +56,7 @@ public class EndUserServiceImp implements IEndUserService {
 		newCustomer.setAdmin(register.isAdmin());
 		customer = endUserRepository.getByEmailId(register.getEmailId());
 		if (customer != null) {
-			throw new DuplicateEmailIdException(
+			throw new DuplicateValuesException(
 					"Customer with the given email Id already exists, try registering using other email id or login though this mail Id");
 		}
 		Login login = new Login();
@@ -313,7 +312,6 @@ public class EndUserServiceImp implements IEndUserService {
 		}
 		EndUser customer = endUserRepository.getById(id);
 
-		
 		return customer.getCart().getCartCost();
 	}
 

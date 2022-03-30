@@ -27,8 +27,8 @@ public class GardenDecorServiceTest
 	@Disabled
 	void getGardenDecorById()
 	{
-		GardenDecor result = gardenDecorServ.getGardenDecorById(101);
-		assertEquals(101,result.getGardenDecorId());
+		GardenDecor result = gardenDecorServ.getGardenDecorById(9);
+		assertEquals(9,result.getGardenDecorId());
 	}
 	
 	@Test
@@ -36,23 +36,23 @@ public class GardenDecorServiceTest
 	void getAllGardenDecor()
 	{
 		List<GardenDecor> al = gardenDecorServ.getAllGardenDecor();
-		assertEquals(5,al.size());
+		assertEquals(4,al.size());
 	}
 	
 	@Test
 	@Disabled
 	void updateGardenDecorNameById()
 	{
-		GardenDecor result = gardenDecorServ.updateGardenDecorNameById(1,101,"name");
-		assertEquals("name",result.getGardenDecorName());
+		GardenDecor result = gardenDecorServ.updateGardenDecorNameById(1,9,"Fountain");
+		assertEquals("Fountain",result.getGardenDecorName());
 	}
 	
 	@Test
 	@Disabled
 	void updateGardenDecorPriceById()
 	{
-		GardenDecor result = gardenDecorServ.updateGardenDecorPriceById(1,101,50);
-		assertEquals(50,result.getGardenDecorPrice());
+		GardenDecor result = gardenDecorServ.updateGardenDecorPriceById(1,9,200);
+		assertEquals(200,result.getGardenDecorPrice());
 	}
 	
 	@Test

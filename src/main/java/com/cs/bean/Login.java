@@ -2,6 +2,7 @@ package com.cs.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -33,6 +34,7 @@ import lombok.NoArgsConstructor;
 public class Login {
 	@Id
 	@NotEmpty(message = "Please enter email")
+	@Email
 	private String email;
 	@Size(min = 8, message = "Please enter password with minimum 8 characters")
 	@NotEmpty(message = "Please enter password")

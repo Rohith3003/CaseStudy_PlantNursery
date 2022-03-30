@@ -94,6 +94,7 @@ public class AddressServiceImp implements IAddressService {
 		oldAddress.get().setCountry(address.getCountry());
 		oldAddress.get().setFlatNum(address.getFlatNum());
 		oldAddress.get().setPincode(address.getPincode());
+		oldAddress.get().setState(address.getState());
 		return addressRepo.save(oldAddress.get());
 	}
 
