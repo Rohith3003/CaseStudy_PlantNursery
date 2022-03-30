@@ -11,12 +11,16 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 /**
  * Represents Planter entity, contains all the attributes along with validations.
  */
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Planter {
 	
 	@Id
@@ -34,7 +38,7 @@ public class Planter {
 	private Type category; //Belongs to one of the pre-defined Enum Type
 	
 	@NotEmpty
-	@Size(min=10,message = "Description should be atleast 10 char and maximum 30 chars")
+	@Size(min=10,max=50,message = "Description should be atleast 10 char and maximum 50 chars")
 	private String description;//Description of the product
 
 	@Max(10000)
