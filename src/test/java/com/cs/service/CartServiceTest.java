@@ -93,7 +93,6 @@ public class CartServiceTest
 		Cart before = cartServ.viewCart(10);
 		int n = before.getFertilizer().size();
 		Cart result = cartServ.addFertilizerToCart(10,5);
-		int n = before.getGardenDecor().size();
 		assertEquals(n+1,result.getFertilizer().size());
 	}
 	
