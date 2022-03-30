@@ -272,7 +272,6 @@ public class EndUserServiceImp implements IEndUserService {
 		customer.getAddress().setState(address.getState());
 		endUserRepository.save(customer);
 		return register;
-		// return null;
 	}
 
 	@Override
