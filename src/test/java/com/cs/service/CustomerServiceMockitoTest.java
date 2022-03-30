@@ -26,6 +26,13 @@ import com.cs.repository.ICartRepository;
 import com.cs.repository.IEndUserRepository;
 import com.cs.repository.ILoginRepository;
 
+/*
+ * Mockito testing of methods in IEndUser Service
+ * 
+ * @author Sapala Srusti Vemula
+ */
+
+
 @ExtendWith(SpringExtension.class)
 public class CustomerServiceMockitoTest {
 

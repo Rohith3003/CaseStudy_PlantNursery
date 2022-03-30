@@ -14,6 +14,14 @@ import com.cs.bean.EndUser;
 import com.cs.dto.Register;
 import com.cs.dto.RegisterOutputDto;
 
+/*
+ * JUnit testing of methods in IEndUser Service
+ * 
+ * @author Sapala Srusti Vemula
+ */
+
+
+
 @SpringBootTest
 public class CustomerServiceTest {
 
@@ -55,6 +63,7 @@ public class CustomerServiceTest {
 	}
 
 	@Test
+	@Disabled
 	void getCustomerByNameTest() {
 		List<RegisterOutputDto> registerDtos = endUserService.getCustomersByName("Kiran");
 		assertEquals(1, registerDtos.size());
@@ -69,6 +78,7 @@ public class CustomerServiceTest {
 	}
 
 	@Test
+	@Disabled
 	void getAllCustomersDtoTest() {
 		List<RegisterOutputDto> customersDto = endUserService.getAllCustomerDto();
 		assertEquals(2, customersDto.size());
@@ -81,12 +91,14 @@ public class CustomerServiceTest {
 	}
 
 	@Test
+	@Disabled
 	void updateNameTest() {
 		String output = endUserService.updateName(1, "Abhi");
 		assertEquals("Full name is successfully updated", output);
 	}
 
 	@Test
+	@Disabled
 	void updateMobileNumber() {
 		String output = endUserService.updateMobileNumber(1, "9175787574");
 		assertEquals("Mobile Number is successfully updated", output);
@@ -110,6 +122,7 @@ public class CustomerServiceTest {
 	}
 
 	@Test
+	@Disabled
 	void updateCustomerAddressTest() {
 		Address address = new Address(103, "Estate", "Uppal", "Hyd", "Ts", 501010, "India");
 		RegisterOutputDto registerDto = endUserService.updateCustomerAddress(2, address);
@@ -127,6 +140,7 @@ public class CustomerServiceTest {
 	}
 
 	@Test
+	@Disabled
 	void getCustomerCartId() {
 		Integer cartId = endUserService.getCustomerCartId(2);
 		assertEquals(4, cartId);
@@ -134,12 +148,14 @@ public class CustomerServiceTest {
 	}
 
 	@Test
+	@Disabled
 	void updatePassword() {
 		String message = endUserService.updatePassword("kiran@gmail.com", "kiran123", "Kiran@56", "Kiran@56");
 		assertEquals("Password is updated successfully", message);
 	}
 
 	@Test
+	@Disabled
 	void getCustomerCartPrice() {
 		Double cartPrice = endUserService.getCustomerCartPrice(1);
 		assertEquals(0, cartPrice);
